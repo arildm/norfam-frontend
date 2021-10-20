@@ -1,0 +1,3 @@
+[submodule "lib/GUITemplate"]
+	path = lib/GUITemplate
+	url = git@github.com:CDH-DevTeam/GUITemplate
