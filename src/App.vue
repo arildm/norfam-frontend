@@ -7,6 +7,7 @@
 
 <script>
 import ButtonLink from "@lib/GUITemplate/ButtonLink.vue";
+import "typeface-barlow-condensed";
 import "@lib/GUITemplate/css/style.css";
 
 export default {
