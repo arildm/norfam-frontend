@@ -47,6 +47,7 @@
 <script>
 import { mapState } from "vuex";
 import "typeface-barlow-condensed";
+import "typeface-antic-didone";
 import "@lib/GUITemplate/css/base.css";
 import Container from "@lib/GUITemplate/vue/Container.vue";
 import Brand from "@lib/GUITemplate/vue/Brand.vue";
@@ -68,8 +69,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Antic+Didone&display=swap");
-
 #app {
   display: flex;
   flex-direction: column;
