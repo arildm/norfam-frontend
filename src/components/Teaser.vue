@@ -1,6 +1,6 @@
 <template>
-  <router-link :to="`/article/${edition}/${id}`">
-    <div class="teaser">
+  <router-link :to="`/article/${edition}/${id}`" custom v-slot="{ navigate }">
+    <div class="teaser" @click="navigate">
       <h1>{{ title }}</h1>
       <article v-html="summary" />
     </div>
@@ -15,6 +15,10 @@ export default {
 </script>
 
 <style>
+.teaser {
+  cursor: pointer;
+}
+
 .teaser:not(:last-child) {
   margin-bottom: 30px;
 }

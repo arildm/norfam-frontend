@@ -44,7 +44,14 @@
           </PaneContent>
         </div>
         <div class="right-pane">
-          <div class="right-pane-content">Data och grafer</div>
+          <div class="right-pane-content">
+            <SimilarTerms
+              v-for="{ term, neighbors } in neighbors"
+              :key="term"
+              :term="term"
+              :neighbors="neighbors"
+            />
+          </div>
         </div>
       </Pane>
 
@@ -84,6 +91,7 @@ import Tabs from "@lib/GUITemplate/vue/Tabs.vue";
 import Pane from "@lib/GUITemplate/vue/Pane.vue";
 import PaneContent from "@lib/GUITemplate/vue/PaneContent.vue";
 import Teaser from "@/components/Teaser.vue";
+import SimilarTerms from "@/components/SimilarTerms.vue";
 import { mapMutations, mapState } from "vuex";
 
 const MODE = { HEADING: "Uppslagsord", FULL: "Fulltextsökning" };
@@ -102,13 +110,14 @@ export default {
     Pane,
     PaneContent,
     Teaser,
+    SimilarTerms,
   },
   data: () => ({
     tab: "Utgåva 1",
   }),
   computed: {
     MODE: () => MODE,
-    ...mapState(["fulltext", "results"]),
+    ...mapState(["query", "fulltext", "results", "neighbors"]),
     mode() {
       return this.fulltext ? MODE.FULL : MODE.HEADING;
     },

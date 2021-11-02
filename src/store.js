@@ -5,11 +5,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    query: "",
     modalVisible: null,
     fulltext: false,
     results: { 1: [], 2: [] },
+    neighbors: [],
   },
   mutations: {
+    setQuery(state, query) {
+      state.query = query;
+    },
     showModal(state, name) {
       state.modalVisible = name;
     },
@@ -21,6 +26,9 @@ export default new Vuex.Store({
     },
     setResults(state, { edition, results }) {
       state.results[edition] = results;
+    },
+    setNeighbors(state, neighbors) {
+      state.neighbors = neighbors;
     },
   },
   actions: {},

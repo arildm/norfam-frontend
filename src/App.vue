@@ -78,7 +78,8 @@ h1,
 h2,
 h3,
 strong,
-b {
+b,
+th {
   font-weight: 300;
 }
 </style>

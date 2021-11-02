@@ -11,10 +11,25 @@ export async function search(query, fulltext) {
   ];
 }
 
-export async function getArticle(version, id) {
-  return fetch(`${NORFAM_BACKEND}/api/documents/${id}/?v=${version}`)
+export async function getArticle(edition, id) {
+  return fetch(`${NORFAM_BACKEND}/api/documents/${id}/?v=${edition}`)
     .then((response) => response.json())
     .then(formatHit);
+}
+
+export async function getSimilarTerms(query) {
+  // TODO Edition?
+  const neighborLists = await fetch(`${NORFAM_BACKEND}/api/termsim/?q=${query}`) //
+    .then((response) => response.json());
+  // Format response nicely.
+  return neighborLists.map(({ term_term, neighbors }) => ({
+    term: term_term,
+    neighbors: neighbors.map(({ term, similarity }) => ({
+      // Unpack `term.term_id` to `term_id` etc.
+      ...term,
+      similarity,
+    })),
+  }));
 }
 
 function formatHit(hit) {
