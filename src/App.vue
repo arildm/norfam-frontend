@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Container>
+    <Container id="main">
       <Brand />
       <router-view />
     </Container>
@@ -69,6 +69,15 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&display=swap");
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
 
 #main-title {
   font-family: "Antic Didone", serif;
