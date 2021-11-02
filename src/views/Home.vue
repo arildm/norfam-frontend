@@ -2,8 +2,12 @@
   <div>
     <Controls>
       <ControlsSection>
-        <ButtonLink icon="link" label="Om utgåvorna" />
-        <ButtonLink icon="link" label="Instruktioner" />
+        <ButtonLink icon="link" label="Om utgåvorna" @click="showAbout" />
+        <ButtonLink
+          icon="link"
+          label="Instruktioner"
+          @click="showModal('help')"
+        />
       </ControlsSection>
     </Controls>
     <Row>
@@ -27,7 +31,7 @@
 
           <div class="left-pane-content">
             <Teaser
-              v-for="(hit, i) in results[tab]"
+              v-for="(hit, i) in results[edition]"
               :key="i"
               :title="hit.title"
               :summary="hit.summary"
@@ -46,7 +50,12 @@
           </div>
 
           <div class="left-pane-content">
-            <Teaser title="Stockholm" summary="En huvudstad" />
+            <Teaser
+              v-for="(hit, i) in results[2]"
+              :key="i"
+              :title="hit.title"
+              :summary="hit.summary"
+            />
           </div>
         </div>
 
@@ -67,6 +76,7 @@ import SwitchButton from "@lib/GUITemplate/vue/SwitchButton.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import Tabs from "@lib/GUITemplate/vue/Tabs.vue";
 import Teaser from "@/components/Teaser.vue";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "home",
@@ -82,16 +92,20 @@ export default {
   },
   data: () => ({
     tab: "Utgåva 1",
-    results: {
-      "Utgåva 1": [
-        { title: "Stockholm", summary: "En huvudstad" },
-        { title: "Stockholm", summary: "En huvudstad" },
-        { title: "Stockholmare", summary: "En person" },
-        { title: "Stock", summary: "En tjock pinne" },
-      ],
-      "Utgåva 2": [{ title: "Stockholm", summary: "En huvudstad" }],
-    },
   }),
+  computed: {
+    ...mapState(["results"]),
+    /** Returns 1 or 2 */
+    edition() {
+      return [undefined, "Utgåva 1", "Utgåva 2"].indexOf(this.tab);
+    },
+  },
+  methods: {
+    ...mapMutations(["showModal"]),
+    showAbout() {
+      this.showModal("about");
+    },
+  },
 };
 </script>
 

@@ -1,10 +1,30 @@
 <template>
-  <input type="text" id="search" name="search" placeholder="Sök..." />
+  <input
+    type="text"
+    id="search"
+    v-model="q"
+    placeholder="Sök..."
+    @keyup="search"
+  />
 </template>
 
 <script>
+import { search } from "@/services/norfam.service";
+import { mapMutations } from "vuex";
+
 export default {
   name: "SearchForm",
+  data: () => ({
+    q: "",
+  }),
+  methods: {
+    ...mapMutations(["setResults"]),
+    async search() {
+      const [res1, res2] = await search(this.q);
+      res1.then((results) => this.setResults({ edition: 1, results }));
+      res2.then((results) => this.setResults({ edition: 2, results }));
+    },
+  },
 };
 </script>
 
