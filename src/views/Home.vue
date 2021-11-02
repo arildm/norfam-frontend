@@ -16,7 +16,7 @@
     <Controls>
       <SwitchButton
         :options="[MODE.HEADING, MODE.FULL]"
-        :selected="MODE.HEADING"
+        :selected="mode"
         @change="modeChanged"
       />
       <ButtonLink id="close-tab" label="Slå ihop flikar" />
@@ -101,7 +101,10 @@ export default {
   }),
   computed: {
     MODE: () => MODE,
-    ...mapState(["results"]),
+    ...mapState(["fulltext", "results"]),
+    mode() {
+      return this.fulltext ? MODE.FULL : MODE.HEADING;
+    },
     /** Returns 1 or 2 */
     edition() {
       return [undefined, "Utgåva 1", "Utgåva 2"].indexOf(this.tab);

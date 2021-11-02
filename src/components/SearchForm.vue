@@ -4,13 +4,16 @@
     id="search"
     v-model="q"
     placeholder="Sök..."
-    @keyup="search"
+    @input="search"
   />
 </template>
 
 <script>
+import { debounce } from "@/assets/util";
 import { search } from "@/services/norfam.service";
 import { mapMutations, mapState } from "vuex";
+
+const searchDebounced = debounce(search);
 
 export default {
   name: "SearchForm",
@@ -23,7 +26,10 @@ export default {
   methods: {
     ...mapMutations(["setResults"]),
     async search() {
-      const [res1, res2] = await search(this.q, this.fulltext);
+      const q = this.q;
+      const [res1, res2] = await searchDebounced(this.q, this.fulltext);
+      // The request can take some time. Discard this result if the query has already changed.
+      if (q !== this.q) return;
       res1.then((results) => this.setResults({ edition: 1, results }));
       res2.then((results) => this.setResults({ edition: 2, results }));
     },
