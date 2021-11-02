@@ -14,7 +14,11 @@
       <SearchForm />
     </Row>
     <Controls>
-      <SwitchButton :options="['Uppslagsord', 'Fulltextsökning']" />
+      <SwitchButton
+        :options="[MODE.HEADING, MODE.FULL]"
+        :selected="MODE.HEADING"
+        @change="modeChanged"
+      />
       <ButtonLink id="close-tab" label="Slå ihop flikar" />
     </Controls>
     <div class="publications">
@@ -78,6 +82,8 @@ import Tabs from "@lib/GUITemplate/vue/Tabs.vue";
 import Teaser from "@/components/Teaser.vue";
 import { mapMutations, mapState } from "vuex";
 
+const MODE = { HEADING: "Uppslagsord", FULL: "Fulltextsökning" };
+
 export default {
   name: "home",
   components: {
@@ -94,6 +100,7 @@ export default {
     tab: "Utgåva 1",
   }),
   computed: {
+    MODE: () => MODE,
     ...mapState(["results"]),
     /** Returns 1 or 2 */
     edition() {
@@ -101,9 +108,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["showModal"]),
+    ...mapMutations(["showModal", "setFulltext"]),
     showAbout() {
       this.showModal("about");
+    },
+    modeChanged(mode) {
+      this.setFulltext(mode === MODE.FULL);
     },
   },
 };

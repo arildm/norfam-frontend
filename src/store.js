@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     modalVisible: null,
+    fulltext: false,
     results: { 1: [], 2: [] },
   },
   mutations: {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     hideModal(state) {
       state.modalVisible = null;
+    },
+    setFulltext(state, fulltext) {
+      state.fulltext = fulltext;
     },
     setResults(state, { edition, results }) {
       state.results[edition] = results;

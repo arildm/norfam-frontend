@@ -10,17 +10,20 @@
 
 <script>
 import { search } from "@/services/norfam.service";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "SearchForm",
   data: () => ({
     q: "",
   }),
+  computed: {
+    ...mapState(["fulltext"]),
+  },
   methods: {
     ...mapMutations(["setResults"]),
     async search() {
-      const [res1, res2] = await search(this.q);
+      const [res1, res2] = await search(this.q, this.fulltext);
       res1.then((results) => this.setResults({ edition: 1, results }));
       res2.then((results) => this.setResults({ edition: 2, results }));
     },
