@@ -1,14 +1,16 @@
 <template>
-  <div class="teaser">
-    <h1>{{ title }}</h1>
-    <p v-html="summary" />
-  </div>
+  <router-link :to="`/article/${edition}/${id}`">
+    <div class="teaser">
+      <h1>{{ title }}</h1>
+      <article v-html="summary" />
+    </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   name: "Teaser",
-  props: ["title", "summary"],
+  props: ["id", "title", "summary", "edition"],
 };
 </script>
 

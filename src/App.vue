@@ -2,7 +2,6 @@
   <div id="app">
     <Container>
       <Brand />
-      <MainTitle>Nordisk<br />Familjebok</MainTitle>
       <router-view />
     </Container>
     <Modal v-show="modalVisible === 'about'">
@@ -51,7 +50,6 @@ import "typeface-barlow-condensed";
 import "@lib/GUITemplate/css/base.css";
 import Container from "@lib/GUITemplate/vue/Container.vue";
 import Brand from "@lib/GUITemplate/vue/Brand.vue";
-import MainTitle from "@lib/GUITemplate/vue/MainTitle.vue";
 import Modal from "@lib/GUITemplate/vue/Modal.vue";
 import Footer from "@lib/GUITemplate/vue/Footer.vue";
 
@@ -60,7 +58,6 @@ export default {
   components: {
     Container,
     Brand,
-    MainTitle,
     Modal,
     Footer,
   },
@@ -77,6 +74,10 @@ export default {
   font-family: "Antic Didone", serif;
 }
 
+h1,
+h2,
+h3,
+strong,
 b {
   font-weight: 300;
 }

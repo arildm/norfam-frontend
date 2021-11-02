@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MainTitle>Nordisk<br />Familjebok</MainTitle>
     <Controls>
       <ControlsSection>
         <ButtonLink icon="link" label="Om utgåvorna" @click="showAbout" />
@@ -35,10 +36,10 @@
 
           <div class="left-pane-content">
             <Teaser
-              v-for="(hit, i) in results[edition]"
-              :key="i"
-              :title="hit.title"
-              :summary="hit.summary"
+              v-for="hit in results[edition]"
+              :key="hit.id"
+              v-bind="hit"
+              :edition="edition"
             />
           </div>
         </div>
@@ -55,10 +56,10 @@
 
           <div class="left-pane-content">
             <Teaser
-              v-for="(hit, i) in results[2]"
-              :key="i"
-              :title="hit.title"
-              :summary="hit.summary"
+              v-for="hit in results[2]"
+              :key="hit.id"
+              v-bind="hit"
+              :edition="2"
             />
           </div>
         </div>
@@ -72,6 +73,7 @@
 </template>
 
 <script>
+import MainTitle from "@lib/GUITemplate/vue/MainTitle.vue";
 import Controls from "@lib/GUITemplate/vue/Controls.vue";
 import ControlsSection from "@lib/GUITemplate/vue/ControlsSection.vue";
 import ButtonLink from "@lib/GUITemplate/vue/ButtonLink.vue";
@@ -87,6 +89,7 @@ const MODE = { HEADING: "Uppslagsord", FULL: "Fulltextsökning" };
 export default {
   name: "home",
   components: {
+    MainTitle,
     Controls,
     ControlsSection,
     ButtonLink,
