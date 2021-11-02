@@ -23,51 +23,51 @@
       <ButtonLink id="close-tab" label="Slå ihop flikar" />
     </Controls>
     <div class="publications">
-      <div class="publication">
+      <Pane class="publication">
         <div class="left-pane">
-          <div class="left-pane-content">
+          <PaneContent>
             <Tabs
               :options="['Utgåva 1', 'Utgåva 2', 'Analys']"
               :selected="tab"
               @change="tab = $event"
             />
             <div class="pub-title">Utgåva 1</div>
-          </div>
+          </PaneContent>
 
-          <div class="left-pane-content">
+          <PaneContent>
             <Teaser
               v-for="hit in results[edition]"
               :key="hit.id"
               v-bind="hit"
               :edition="edition"
             />
-          </div>
+          </PaneContent>
         </div>
         <div class="right-pane">
           <div class="right-pane-content">Data och grafer</div>
         </div>
-      </div>
+      </Pane>
 
-      <div class="publication publication2">
+      <Pane class="publication publication2">
         <div class="left-pane">
-          <div class="left-pane-content">
+          <PaneContent>
             <div class="pub-title">Utgåva 2</div>
-          </div>
+          </PaneContent>
 
-          <div class="left-pane-content">
+          <PaneContent>
             <Teaser
               v-for="hit in results[2]"
               :key="hit.id"
               v-bind="hit"
               :edition="2"
             />
-          </div>
+          </PaneContent>
         </div>
 
         <div class="right-pane">
           <div class="right-pane-content">Data och grafer</div>
         </div>
-      </div>
+      </Pane>
     </div>
   </div>
 </template>
@@ -81,6 +81,8 @@ import Row from "@lib/GUITemplate/vue/Row.vue";
 import SwitchButton from "@lib/GUITemplate/vue/SwitchButton.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import Tabs from "@lib/GUITemplate/vue/Tabs.vue";
+import Pane from "@lib/GUITemplate/vue/Pane.vue";
+import PaneContent from "@lib/GUITemplate/vue/PaneContent.vue";
 import Teaser from "@/components/Teaser.vue";
 import { mapMutations, mapState } from "vuex";
 
@@ -97,6 +99,8 @@ export default {
     SwitchButton,
     SearchForm,
     Tabs,
+    Pane,
+    PaneContent,
     Teaser,
   },
   data: () => ({
@@ -135,13 +139,7 @@ export default {
   display: flex;
   width: 48.5%;
   transition: all 0.2s ease-in-out;
-  border-style: none;
-  border-color: black;
-  border-width: 0.5px;
-  border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 40px;
-  background-color: rgb(245, 245, 245);
 }
 
 .publication.publication2 {
