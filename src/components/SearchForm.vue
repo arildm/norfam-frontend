@@ -4,7 +4,7 @@
     id="search"
     v-model="q"
     placeholder="Sök..."
-    @input="search"
+    @input="queryChanged"
   />
 </template>
 
@@ -25,10 +25,9 @@ export default {
   },
   methods: {
     ...mapMutations(["setQuery", "setResults", "setNeighbors"]),
-    async search() {
+    async queryChanged() {
       this.setQuery(this.q);
-      this.searchArticles(this.q);
-      this.findSimilarTerms(this.q);
+      // Requests are triggered by watcher.
     },
     async searchArticles(query) {
       const [res1, res2] = await searchDebounced(this.query, this.fulltext);
@@ -46,6 +45,8 @@ export default {
   watch: {
     query(query) {
       this.q = query;
+      this.searchArticles(this.q);
+      this.findSimilarTerms(this.q);
     },
   },
 };
