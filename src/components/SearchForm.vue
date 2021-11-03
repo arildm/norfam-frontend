@@ -48,6 +48,10 @@ export default {
       this.searchArticles(this.q);
       this.findSimilarTerms(this.q);
     },
+    fulltext() {
+      this.searchArticles(this.q);
+      this.findSimilarTerms(this.q);
+    },
   },
 };
 </script>

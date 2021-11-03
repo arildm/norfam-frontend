@@ -36,7 +36,8 @@
 
           <PaneContent>
             <div>
-              {{ Number(results[edition].length).toLocaleString("sv") }} träffar
+              {{ Number(results[edition].length).toLocaleString("sv") }}
+              {{ results[edition].length == 1 ? "träff" : "träffar" }}
             </div>
             <Teaser
               v-for="hit in results[edition]"
@@ -69,7 +70,8 @@
 
           <PaneContent>
             <div>
-              {{ Number(results[2].length).toLocaleString("sv") }} träffar
+              {{ Number(results[2].length).toLocaleString("sv") }}
+              {{ results[2].length == 1 ? "träff" : "träffar" }}
             </div>
             <Teaser
               v-for="hit in results[2]"
