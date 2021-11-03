@@ -45,12 +45,15 @@
         </div>
         <div class="right-pane">
           <div class="right-pane-content">
-            <SimilarTerms
-              v-for="{ term, neighbors } in neighbors"
-              :key="term"
-              :term="term"
-              :neighbors="neighbors"
-            />
+            <div v-if="neighbors.length">
+              <h3>Liknande ord</h3>
+              <SimilarTerms
+                v-for="{ term, neighbors } in neighbors"
+                :key="term"
+                :term="term"
+                :neighbors="neighbors"
+              />
+            </div>
           </div>
         </div>
       </Pane>
@@ -211,6 +214,10 @@ export default {
 
 .right-pane-content {
   padding: 20px;
+}
+
+h3:first-child {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 700px) {

@@ -19,8 +19,8 @@ export default {
   cursor: pointer;
 }
 
-.teaser:not(:last-child) {
-  margin-bottom: 30px;
+.teaser {
+  margin-block: 30px;
 }
 
 .teaser h1 {
