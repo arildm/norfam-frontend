@@ -17,16 +17,23 @@
           @click="downloadText"
           type="text/plain"
         />
-        <PaneContent v-if="pages.length">
+        <ButtonLink
+          v-if="facsimiles.length"
+          icon="download"
+          label="Ladda ner faksimiler"
+          @click="downloadFacsimiles"
+          type="text/plain"
+        />
+        <PaneContent v-if="facsimiles.length">
           <h3>Faksimiler</h3>
           <div class="facsimiles">
             <a
-              v-for="fn in pages"
-              :key="fn"
-              :href="`http://runeberg.org/img/${fn}.3.png`"
+              v-for="facsimile in facsimiles"
+              :key="facsimile.name"
+              :href="facsimile.large"
               class="facsimiles-item"
             >
-              <img :src="`http://runeberg.org/img/${fn}.8.png`" />
+              <img :src="facsimile.thumb" />
             </a>
           </div>
         </PaneContent>
@@ -60,6 +67,14 @@ export default {
       return (
         window[`scanned_${this.edition}`][this.article.title] || []
       ).map((fn) => String(fn.match(/nf..\/\d+/)));
+    },
+    facsimiles() {
+      return this.pages.map((name) => ({
+        name,
+        thumb: `http://runeberg.org/img/${name}.8.png`,
+        large: `http://runeberg.org/img/${name}.3.png`,
+        full: `http://runeberg.org/img/${name}.1.tif`,
+      }));
     },
   },
   methods: {
