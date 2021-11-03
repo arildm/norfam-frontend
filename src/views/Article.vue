@@ -11,6 +11,14 @@
         <article v-html="article.body" />
       </PaneContent>
       <div class="article-pane-side">
+        <PaneContent>
+          <ButtonLink
+            icon="download"
+            label="Ladda ner text"
+            @click="downloadText"
+            type="text/plain"
+          />
+        </PaneContent>
         <PaneContent v-if="pages.length">
           <h3>Faksimiler</h3>
           <div class="facsimiles">
@@ -31,6 +39,7 @@
 
 <script>
 import { getArticle } from "@/services/norfam.service";
+import { download } from "@/assets/util";
 import Row from "@lib/GUITemplate/vue/Row.vue";
 import ButtonLink from "@lib/GUITemplate/vue/ButtonLink.vue";
 import Pane from "@lib/GUITemplate/vue/Pane.vue";
@@ -55,6 +64,12 @@ export default {
       ).map((fn) => String(fn.match(/nf..\/\d+/)));
     },
   },
+  methods: {
+    downloadText() {
+      const plainText = this.article.body.replaceAll(/<\/?\w+>/g, "");
+      download(`${this.article.title}.txt`, plainText);
+    },
+  },
   async created() {
     this.article = await getArticle(this.edition, this.id);
   },
@@ -70,6 +85,10 @@ export default {
   .article-pane {
     flex-wrap: wrap;
   }
+}
+
+.article-pane-text {
+  flex: 1;
 }
 
 .facsimiles {
