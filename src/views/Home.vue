@@ -68,6 +68,9 @@
           </PaneContent>
 
           <PaneContent>
+            <div>
+              {{ Number(results[2].length).toLocaleString("sv") }} träffar
+            </div>
             <Teaser
               v-for="hit in results[2]"
               :key="hit.id"

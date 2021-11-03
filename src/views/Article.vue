@@ -12,11 +12,13 @@
       </PaneContent>
       <div class="article-pane-side">
         <PaneContent>
+          <a v-if="linkRuneberg" :href="linkRuneberg" target="_blank">
+            <ButtonLink icon="link" label="Läs på runeberg.org" />
+          </a>
           <ButtonLink
             icon="download"
-            label="Ladda ner text"
+            label="Ladda ner ren text"
             @click="downloadText"
-            type="text/plain"
           />
         </PaneContent>
         <PaneContent v-if="pages.length">
@@ -26,6 +28,7 @@
               v-for="fn in pages"
               :key="fn"
               :href="`http://runeberg.org/img/${fn}.3.png`"
+              target="_blank"
               class="facsimiles-item"
             >
               <img :src="`http://runeberg.org/img/${fn}.8.png`" />
@@ -63,6 +66,10 @@ export default {
         window[`scanned_${this.edition}`][this.article.title] || []
       ).map((fn) => String(fn.match(/nf..\/\d+/)));
     },
+    linkRuneberg() {
+      const firstPage = this.pages[0];
+      return firstPage && `http://runeberg.org/${firstPage}.html`;
+    },
   },
   methods: {
     downloadText() {
@@ -83,7 +90,7 @@ export default {
 
 @media screen and (max-width: 800px) {
   .article-pane {
-    flex-wrap: wrap;
+    display: block;
   }
 }
 
@@ -91,23 +98,20 @@ export default {
   flex: 1;
 }
 
+.article-pane-side {
+  flex: 0;
+}
+
 .facsimiles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-right: -1rem;
   margin-bottom: -1rem;
 }
 
 .facsimiles-item {
   display: block;
-  flex: 1;
-  min-width: 10rem;
-  margin-right: 1rem;
   margin-bottom: 1rem;
 }
 
 .facsimiles-item img {
-  width: 100%;
+  max-width: 100%;
 }
 </style>
