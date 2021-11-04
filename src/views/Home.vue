@@ -49,10 +49,10 @@
         </div>
         <div class="right-pane">
           <div class="right-pane-content">
-            <div v-if="neighbors.length">
+            <div v-if="neighbors[edition].length">
               <h3>Liknande ord</h3>
               <SimilarTerms
-                v-for="{ term, neighbors } in neighbors"
+                v-for="{ term, neighbors } in neighbors[edition]"
                 :key="term"
                 :term="term"
                 :neighbors="neighbors"
@@ -83,7 +83,17 @@
         </div>
 
         <div class="right-pane">
-          <div class="right-pane-content">Data och grafer</div>
+          <div class="right-pane-content">
+            <div v-if="neighbors[2].length">
+              <h3>Liknande ord</h3>
+              <SimilarTerms
+                v-for="{ term, neighbors } in neighbors[2]"
+                :key="term"
+                :term="term"
+                :neighbors="neighbors"
+              />
+            </div>
+          </div>
         </div>
       </Pane>
     </div>
@@ -160,6 +170,7 @@ export default {
   width: 48.5%;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
+  padding-bottom: 1rem;
 }
 
 .publication.publication2 {

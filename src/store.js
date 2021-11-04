@@ -9,7 +9,7 @@ export default new Vuex.Store({
     modalVisible: null,
     fulltext: false,
     results: { 1: [], 2: [] },
-    neighbors: [],
+    neighbors: { 1: [], 2: [] },
   },
   mutations: {
     setQuery(state, query) {
@@ -27,8 +27,8 @@ export default new Vuex.Store({
     setResults(state, { edition, results }) {
       state.results[edition] = results;
     },
-    setNeighbors(state, neighbors) {
-      state.neighbors = neighbors;
+    setNeighbors(state, { edition, neighbors }) {
+      state.neighbors[edition] = neighbors;
     },
   },
   actions: {},

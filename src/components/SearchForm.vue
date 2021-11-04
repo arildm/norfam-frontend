@@ -14,6 +14,7 @@ import { getSimilarTerms, search } from "@/services/norfam.service";
 import { mapMutations, mapState } from "vuex";
 
 const searchDebounced = debounce(search);
+const getSimilarTermsDebounced = debounce(getSimilarTerms);
 
 export default {
   name: "SearchForm",
@@ -37,9 +38,10 @@ export default {
       res2.then((results) => this.setResults({ edition: 2, results }));
     },
     async findSimilarTerms(query) {
-      const neighbors = await getSimilarTerms(query);
+      const [res1, res2] = await getSimilarTermsDebounced(query);
       if (query !== this.query) return;
-      this.setNeighbors(neighbors);
+      res1.then((neighbors) => this.setNeighbors({ edition: 1, neighbors }));
+      res2.then((neighbors) => this.setNeighbors({ edition: 2, neighbors }));
     },
   },
   watch: {
