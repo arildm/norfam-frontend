@@ -36,8 +36,7 @@
 
           <PaneContent>
             <div>
-              {{ Number(results[edition].length).toLocaleString("sv") }}
-              {{ results[edition].length == 1 ? "träff" : "träffar" }}
+              {{ hitCountMessage(results[edition]) }}
             </div>
             <Teaser
               v-for="hit in results[edition]"
@@ -70,8 +69,7 @@
 
           <PaneContent>
             <div>
-              {{ Number(results[2].length).toLocaleString("sv") }}
-              {{ results[2].length == 1 ? "träff" : "träffar" }}
+              {{ hitCountMessage(results[2]) }}
             </div>
             <Teaser
               v-for="hit in results[2]"
@@ -154,6 +152,13 @@ export default {
     },
     modeChanged(mode) {
       this.setFulltext(mode === MODE.FULL);
+    },
+    hitCountMessage(hits) {
+      return hits.length == 1
+        ? "1 träff"
+        : hits.length == 100
+        ? "Minst 100 träffar"
+        : `${Number(hits.length).toLocaleString("sv")} träffar`;
     },
   },
 };

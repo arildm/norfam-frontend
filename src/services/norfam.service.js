@@ -5,7 +5,7 @@ export async function search(query, fulltext) {
   const url = `${NORFAM_BACKEND}/api/query/?q=${query}&m=${mode}`;
 
   const formatResponse = async (response) =>
-    (await response.json()).map(formatHit);
+    (await response.json()).slice(0, 100).map(formatHit);
 
   return [
     fetch(`${url}&v=1`).then(formatResponse),
