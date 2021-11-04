@@ -39,11 +39,14 @@
               {{ hitCountMessage(results[edition]) }}
             </div>
             <Teaser
-              v-for="hit in results[edition]"
+              v-for="hit in results[edition].slice(0, 100)"
               :key="hit.id"
               v-bind="hit"
               :edition="edition"
             />
+            <p v-if="results[edition].length > 100">
+              <em>Endast de 100 första sökträffarna visas.</em>
+            </p>
           </PaneContent>
         </div>
         <div class="right-pane">
@@ -72,11 +75,14 @@
               {{ hitCountMessage(results[2]) }}
             </div>
             <Teaser
-              v-for="hit in results[2]"
+              v-for="hit in results[2].slice(0, 100)"
               :key="hit.id"
               v-bind="hit"
               :edition="2"
             />
+            <p v-if="results[2].length > 100">
+              <em>Endast de 100 första sökträffarna visas.</em>
+            </p>
           </PaneContent>
         </div>
 
