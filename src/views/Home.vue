@@ -25,16 +25,15 @@
     <div class="publications">
       <Pane class="publication">
         <div class="left-pane">
-          <PaneContent>
+          <PaneContent class="edition-tabs">
             <Tabs
               :options="['Utgåva 1', 'Utgåva 2', 'Analys']"
               :selected="tab"
               @change="tab = $event"
             />
-            <div class="pub-title">Utgåva 1</div>
           </PaneContent>
 
-          <PaneContent>
+          <PaneContent title="Utgåva 1">
             <div>
               {{ hitCountMessage(results[edition]) }}
             </div>
@@ -66,11 +65,7 @@
 
       <Pane class="publication publication2">
         <div class="left-pane">
-          <PaneContent>
-            <div class="pub-title">Utgåva 2</div>
-          </PaneContent>
-
-          <PaneContent>
+          <PaneContent title="Utgåva 2">
             <div>
               {{ hitCountMessage(results[2]) }}
             </div>
@@ -188,13 +183,9 @@ export default {
   margin-right: 0;
 }
 
-.pub-title {
-  font-size: 24px;
-  color: #0099cc;
-}
-
-.publication .tab-container {
+.publication .edition-tabs {
   display: none;
+  margin-left: -15px;
 }
 
 #close-tab {
@@ -212,13 +203,8 @@ export default {
     display: none;
   }
 
-  .pub-title {
-    display: none;
-  }
-
-  .publication .tab-container {
+  .publication .edition-tabs {
     display: flex;
-    margin-left: -15px;
   }
 
   #close-tab {
@@ -252,6 +238,14 @@ h3:first-child {
 
 @media screen and (max-width: 700px) {
   .right-pane {
+    display: none;
+  }
+}
+</style>
+
+<style>
+@media screen and (max-width: 1600px) {
+  .pane-title {
     display: none;
   }
 }

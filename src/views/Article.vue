@@ -5,9 +5,9 @@
         <ButtonLink icon="back" label="Sök" />
       </router-link>
     </Row>
+    <h1>{{ article.title }}</h1>
     <Pane class="article-pane">
-      <PaneContent class="article-pane-text">
-        <h1>{{ article.title }}</h1>
+      <PaneContent :title="editionName" class="article-pane-text">
         <article v-html="article.body" />
       </PaneContent>
       <div class="article-pane-side">
@@ -69,6 +69,9 @@ export default {
     linkRuneberg() {
       const firstPage = this.pages[0];
       return firstPage && `http://runeberg.org/${firstPage}.html`;
+    },
+    editionName() {
+      return [null, "Utgåva 1", "Utgåva 2"][this.edition];
     },
   },
   methods: {
