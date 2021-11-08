@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ waiting }">
     <Container id="main">
       <Brand />
       <router-view />
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 import "typeface-barlow-condensed";
 import "typeface-antic-didone";
 import "@gui/css/base.css";
@@ -74,7 +74,8 @@ export default {
     Footer,
   },
   computed: {
-    ...mapState(["modalVisible"]),
+    ...mapState(["modalVisible", "queue"]),
+    ...mapGetters(["waiting"]),
   },
   methods: {
     ...mapMutations(["hideModal"]),
@@ -95,6 +96,10 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
+}
+
+.waiting {
+  cursor: wait;
 }
 
 #main {

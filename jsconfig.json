@@ -1,9 +1,9 @@
 {
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "lib/**/*"],
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@lib/*": ["./lib/GUITemplate/*"]
+      "@gui/*": ["./lib/GUITemplate/*"]
     }
   }
 }

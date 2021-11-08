@@ -11,9 +11,9 @@
         />
       </ControlsSection>
     </Controls>
-    <Row>
-      <SearchForm />
-    </Row>
+
+    <SearchForm />
+
     <Controls>
       <SwitchButton
         :options="[MODE.HEADING, MODE.FULL]"
@@ -104,7 +104,6 @@ import MainTitle from "@gui/vue/MainTitle.vue";
 import Controls from "@gui/vue/Controls.vue";
 import ControlsSection from "@gui/vue/ControlsSection.vue";
 import ButtonLink from "@gui/vue/ButtonLink.vue";
-import Row from "@gui/vue/Row.vue";
 import SwitchButton from "@gui/vue/SwitchButton.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import Tabs from "@gui/vue/Tabs.vue";
@@ -123,7 +122,6 @@ export default {
     Controls,
     ControlsSection,
     ButtonLink,
-    Row,
     SwitchButton,
     SearchForm,
     Tabs,

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     fulltext: false,
     results: { 1: [], 2: [] },
     neighbors: { 1: [], 2: [] },
+    queue: {},
   },
   mutations: {
     setQuery(state, query) {
@@ -30,6 +31,14 @@ export default new Vuex.Store({
     setNeighbors(state, { edition, neighbors }) {
       state.neighbors[edition] = neighbors;
     },
+    enqueue(state, name) {
+      state.queue[name] = true;
+    },
+    dequeue(state, name) {
+      Vue.delete(state.queue, name);
+    },
   },
-  actions: {},
+  getters: {
+    waiting: (state) => Object.keys(state.queue).length > 0,
+  },
 });
