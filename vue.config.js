@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   configureWebpack: {
     resolve: {
-      alias: { "@lib": path.resolve(__dirname, "lib/") },
+      alias: { "@gui": path.resolve(__dirname, "lib/GUITemplate/") },
     },
   },
 };

@@ -43,10 +43,10 @@
 <script>
 import { getArticle } from "@/services/norfam.service";
 import { download } from "@/assets/util";
-import Row from "@lib/GUITemplate/vue/Row.vue";
-import ButtonLink from "@lib/GUITemplate/vue/ButtonLink.vue";
-import Pane from "@lib/GUITemplate/vue/Pane.vue";
-import PaneContent from "@lib/GUITemplate/vue/PaneContent.vue";
+import Row from "@gui/vue/Row.vue";
+import ButtonLink from "@gui/vue/ButtonLink.vue";
+import Pane from "@gui/vue/Pane.vue";
+import PaneContent from "@gui/vue/PaneContent.vue";
 
 export default {
   name: "Article",

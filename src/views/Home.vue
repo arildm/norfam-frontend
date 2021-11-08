@@ -100,16 +100,16 @@
 </template>
 
 <script>
-import MainTitle from "@lib/GUITemplate/vue/MainTitle.vue";
-import Controls from "@lib/GUITemplate/vue/Controls.vue";
-import ControlsSection from "@lib/GUITemplate/vue/ControlsSection.vue";
-import ButtonLink from "@lib/GUITemplate/vue/ButtonLink.vue";
-import Row from "@lib/GUITemplate/vue/Row.vue";
-import SwitchButton from "@lib/GUITemplate/vue/SwitchButton.vue";
+import MainTitle from "@gui/vue/MainTitle.vue";
+import Controls from "@gui/vue/Controls.vue";
+import ControlsSection from "@gui/vue/ControlsSection.vue";
+import ButtonLink from "@gui/vue/ButtonLink.vue";
+import Row from "@gui/vue/Row.vue";
+import SwitchButton from "@gui/vue/SwitchButton.vue";
 import SearchForm from "@/components/SearchForm.vue";
-import Tabs from "@lib/GUITemplate/vue/Tabs.vue";
-import Pane from "@lib/GUITemplate/vue/Pane.vue";
-import PaneContent from "@lib/GUITemplate/vue/PaneContent.vue";
+import Tabs from "@gui/vue/Tabs.vue";
+import Pane from "@gui/vue/Pane.vue";
+import PaneContent from "@gui/vue/PaneContent.vue";
 import Teaser from "@/components/Teaser.vue";
 import SimilarTerms from "@/components/SimilarTerms.vue";
 import { mapMutations, mapState } from "vuex";

@@ -59,11 +59,11 @@
 import { mapMutations, mapState } from "vuex";
 import "typeface-barlow-condensed";
 import "typeface-antic-didone";
-import "@lib/GUITemplate/css/base.css";
-import Container from "@lib/GUITemplate/vue/Container.vue";
-import Brand from "@lib/GUITemplate/vue/Brand.vue";
-import Modal from "@lib/GUITemplate/vue/Modal.vue";
-import Footer from "@lib/GUITemplate/vue/Footer.vue";
+import "@gui/css/base.css";
+import Container from "@gui/vue/Container.vue";
+import Brand from "@gui/vue/Brand.vue";
+import Modal from "@gui/vue/Modal.vue";
+import Footer from "@gui/vue/Footer.vue";
 
 export default {
   name: "App",
