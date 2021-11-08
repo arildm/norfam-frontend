@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import "typeface-barlow-condensed";
 import "typeface-antic-didone";
 import "@lib/GUITemplate/css/base.css";
@@ -75,6 +75,18 @@ export default {
   },
   computed: {
     ...mapState(["modalVisible"]),
+  },
+  methods: {
+    ...mapMutations(["hideModal"]),
+    keyup($event) {
+      if ($event.key == "Escape") this.hideModal();
+    },
+  },
+  mounted() {
+    document.addEventListener("keyup", this.keyup);
+  },
+  beforeDestroy() {
+    document.removeEventListener("keyup", this.keyup);
   },
 };
 </script>
