@@ -20,14 +20,14 @@
         :selected="mode"
         @change="modeChanged"
       />
-      <ButtonLink id="close-tab" label="Slå ihop flikar" />
+      <!-- <ButtonLink id="close-tab" label="Slå ihop flikar" /> -->
     </Controls>
     <div class="publications">
       <Pane class="publication">
         <div class="left-pane">
           <PaneContent class="edition-tabs">
             <Tabs
-              :options="['Utgåva 1', 'Utgåva 2', 'Analys']"
+              :options="['Utgåva 1', 'Utgåva 2' /*, 'Analys'*/]"
               :selected="tab"
               @change="tab = $event"
             />
