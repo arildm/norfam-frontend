@@ -4,7 +4,7 @@
       <Brand />
       <router-view />
     </Container>
-    <Modal v-show="modalVisible === 'about'">
+    <Modal :show="modalVisible === 'about'" @hide="hideModal">
       <div class="article-title">Om utgåvorna</div>
       <div class="article">
         <blockquote>
@@ -33,7 +33,7 @@
         </blockquote>
       </div>
     </Modal>
-    <Modal v-show="modalVisible === 'help'">
+    <Modal :show="modalVisible === 'help'" @hide="hideModal">
       <div class="article-title">Instruktioner</div>
       <div class="article">
         At vero eos et accusamus et iusto odio dignissimos ducimus qui
