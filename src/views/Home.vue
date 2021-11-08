@@ -176,7 +176,6 @@ export default {
   width: 48.5%;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
-  padding-bottom: 1rem;
 }
 
 .publication.publication2 {
@@ -214,6 +213,7 @@ export default {
 
 .left-pane {
   flex: 1;
+  padding-bottom: 1rem;
 }
 
 .left-pane-content {
@@ -226,6 +226,7 @@ export default {
   border-left-style: dotted;
   border-width: 1px;
   border-color: gray;
+  padding-bottom: 1rem;
 }
 
 .right-pane-content {
