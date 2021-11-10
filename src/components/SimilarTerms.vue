@@ -41,6 +41,7 @@ export default {
 <style scoped>
 table {
   width: 100%;
+  margin-bottom: 1em;
 }
 .term span {
   cursor: pointer;

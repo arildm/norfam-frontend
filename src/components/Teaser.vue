@@ -24,7 +24,7 @@ export default {
 }
 
 .teaser h1 {
-  margin-top: 0;
+  margin: 0 0 0.2em;
   font-weight: 300;
 }
 </style>
