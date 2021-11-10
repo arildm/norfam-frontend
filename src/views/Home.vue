@@ -244,7 +244,7 @@ h3:first-child {
 
 <style>
 @media screen and (max-width: 1600px) {
-  .pane-title {
+  .publication .pane-title {
     display: none;
   }
 }
