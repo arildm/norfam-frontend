@@ -43,20 +43,11 @@
 <script>
 import { getArticle } from "@/services/norfam.service";
 import { download } from "@/assets/util";
-import Row from "@gui/vue/Row.vue";
-import ButtonLink from "@gui/vue/ButtonLink.vue";
-import Pane from "@gui/vue/Pane.vue";
-import PaneContent from "@gui/vue/PaneContent.vue";
 
 export default {
   name: "Article",
   props: ["edition", "id"],
-  components: {
-    Row,
-    ButtonLink,
-    Pane,
-    PaneContent,
-  },
+  components: {},
   data: () => ({
     article: null,
   }),

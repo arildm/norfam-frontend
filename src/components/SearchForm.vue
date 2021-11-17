@@ -15,14 +15,12 @@
 import { debounce } from "@/assets/util";
 import { getSimilarTerms, search } from "@/services/norfam.service";
 import { mapGetters, mapMutations, mapState } from "vuex";
-import Row from "@gui/vue/Row.vue";
 
 const searchDebounced = debounce(search);
 const getSimilarTermsDebounced = debounce(getSimilarTerms);
 
 export default {
   name: "SearchForm",
-  components: { Row },
   data: () => ({
     q: "",
   }),

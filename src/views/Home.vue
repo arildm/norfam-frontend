@@ -100,15 +100,7 @@
 </template>
 
 <script>
-import MainTitle from "@gui/vue/MainTitle.vue";
-import Controls from "@gui/vue/Controls.vue";
-import ControlsSection from "@gui/vue/ControlsSection.vue";
-import ButtonLink from "@gui/vue/ButtonLink.vue";
-import SwitchButton from "@gui/vue/SwitchButton.vue";
 import SearchForm from "@/components/SearchForm.vue";
-import Tabs from "@gui/vue/Tabs.vue";
-import Pane from "@gui/vue/Pane.vue";
-import PaneContent from "@gui/vue/PaneContent.vue";
 import Teaser from "@/components/Teaser.vue";
 import SimilarTerms from "@/components/SimilarTerms.vue";
 import { mapMutations, mapState } from "vuex";
@@ -118,15 +110,7 @@ const MODE = { HEADING: "Uppslagsord", FULL: "Fulltextsökning" };
 export default {
   name: "home",
   components: {
-    MainTitle,
-    Controls,
-    ControlsSection,
-    ButtonLink,
-    SwitchButton,
     SearchForm,
-    Tabs,
-    Pane,
-    PaneContent,
     Teaser,
     SimilarTerms,
   },

@@ -56,23 +56,13 @@
 </template>
 
 <script>
+import "cdh-gui-vue/dist/cdh-gui-vue.css";
 import { mapGetters, mapMutations, mapState } from "vuex";
-import "typeface-barlow-condensed";
 import "typeface-antic-didone";
-import "@gui/css/base.css";
-import Container from "@gui/vue/Container.vue";
-import Brand from "@gui/vue/Brand.vue";
-import Modal from "@gui/vue/Modal.vue";
-import Footer from "@gui/vue/Footer.vue";
 
 export default {
   name: "App",
-  components: {
-    Container,
-    Brand,
-    Modal,
-    Footer,
-  },
+  components: {},
   computed: {
     ...mapState(["modalVisible", "queue"]),
     ...mapGetters(["waiting"]),
