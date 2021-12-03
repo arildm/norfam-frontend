@@ -12,23 +12,23 @@
       </PaneContent>
       <div class="article-pane-side">
         <PaneContent>
-          <div v-if="edition == 1" class="cite">
-            <p v-for="item in citeAs" :key="item">{{ item }}</p>
-          </div>
-          <a v-if="linkRuneberg" :href="linkRuneberg" target="_blank">
-            <ButtonLink icon="link" label="Läs på runeberg.org" />
-          </a>
+          <Row v-for="range in pages.ranges" :key="range.link">
+            <p class="citeas">{{ range.citeAs }}</p>
+            <a :href="range.link" target="_blank">
+              <ButtonLink icon="link" label="Läs på runeberg.org" />
+            </a>
+          </Row>
           <ButtonLink
             icon="download"
             label="Ladda ner ren text"
             @click="downloadText"
           />
         </PaneContent>
-        <PaneContent v-if="pageNames.length">
+        <PaneContent v-if="pages.filenames.length">
           <h3>Faksimiler</h3>
           <div class="facsimiles">
             <a
-              v-for="fn in pageNames"
+              v-for="fn in pages.filenames"
               :key="fn"
               :href="`http://runeberg.org/img/${fn}.3.png`"
               target="_blank"
@@ -55,34 +55,39 @@ export default {
     article: null,
   }),
   computed: {
+    /** Get page numbers, scan filenames and citation info, and Runeberg links. */
     pages() {
-      // scanned : { [keyword]: { [volume]: { img: int[][], p: int[][] } }
-      return window[`scanned_${this.edition}`][this.article.title] || {};
-    },
-    pageNames() {
+      const data = window[`scanned_${this.edition}`][this.article.title];
+
       // Temporary exception for 2nd edition, until we have new scanned file for that too.
       // scanned_2 : { [keyword]: string[] }
       if (this.edition == 2) {
-        return (
-          this.pages.length &&
-          this.pages.map((fn) => String(fn.match(/nf..\/\d+/)))
+        const filenames = (data || []).map((fn) =>
+          String(fn.match(/nf..\/\d+/))
         );
+        return {
+          filenames,
+          ranges: [{ link: `http://runeberg.org/${filenames[0]}.html` }],
+        };
       }
 
-      return Object.keys(this.pages).flatMap((volumeCode) =>
-        this.pages[volumeCode].img.map(
-          (scanInt) => `${volumeCode}/${String(scanInt).padStart(4, "0")}`
-        )
-      );
-    },
-    pageNumbers() {
-      return Object.keys(this.pages).flatMap(
-        (volumeCode) => this.pages[volumeCode].p
-      );
-    },
-    linkRuneberg() {
-      const firstPage = this.pageNames[0];
-      return firstPage && `http://runeberg.org/${firstPage}.html`;
+      // scanned_1 : { [keyword]: { [volume]: { img: int[][], p: int[][] } }
+      const filenames = [];
+      const ranges = [];
+      for (const vol in data) {
+        const volFilenames = data[vol].img.map(
+          (scanInt) => `${vol}/${String(scanInt).padStart(4, "0")}`
+        );
+        filenames.push(...volFilenames);
+        const pageRanges = data[vol].p
+          .map((range) => range.join("–"))
+          .join(", ");
+        ranges.push({
+          citeAs: `Nordisk Familjebok, utgåva ${this.edition}, volym ${this.volumes[vol]} ss. ${pageRanges}`,
+          link: `http://runeberg.org/${volFilenames[0]}.html`,
+        });
+      }
+      return { filenames, ranges };
     },
     editionName() {
       return [null, "Utgåva 1", "Utgåva 2"][this.edition];
@@ -110,14 +115,6 @@ export default {
         nfas: "19. supplement: A–Böttiger (1896)",
         nfat: "20. supplement: C–Öxnevalla (1899)",
       };
-    },
-    citeAs() {
-      return Object.keys(this.pages).map((volumeCode) => {
-        const pageRanges = this.pages[volumeCode].p
-          .map((range) => range.join("–"))
-          .join(", ");
-        return `Nordisk Familjebok, utgåva ${this.edition}, volym ${this.volumes[volumeCode]} ss. ${pageRanges}`;
-      });
     },
   },
   methods: {
@@ -149,6 +146,10 @@ export default {
 
 .article-pane-side {
   flex: 0;
+}
+
+.citeas {
+  margin-bottom: 0;
 }
 
 .facsimiles {
