@@ -21,11 +21,11 @@
             @click="downloadText"
           />
         </PaneContent>
-        <PaneContent v-if="pages.length">
+        <PaneContent v-if="pageNames.length">
           <h3>Faksimiler</h3>
           <div class="facsimiles">
             <a
-              v-for="fn in pages"
+              v-for="fn in pageNames"
               :key="fn"
               :href="`http://runeberg.org/img/${fn}.3.png`"
               target="_blank"
@@ -53,12 +53,22 @@ export default {
   }),
   computed: {
     pages() {
-      return (
-        window[`scanned_${this.edition}`][this.article.title] || []
-      ).map((fn) => String(fn.match(/nf..\/\d+/)));
+      return window[`scanned_${this.edition}`][this.article.title] || {};
+    },
+    pageNames() {
+      return Object.keys(this.pages).flatMap((volumeCode) =>
+        this.pages[volumeCode].img.map(
+          (scanInt) => `${volumeCode}/${String(scanInt).padStart(4, "0")}`
+        )
+      );
+    },
+    pageNumbers() {
+      return Object.keys(this.pages).flatMap(
+        (volumeCode) => this.pages[volumeCode].p
+      );
     },
     linkRuneberg() {
-      const firstPage = this.pages[0];
+      const firstPage = this.pageNames[0];
       return firstPage && `http://runeberg.org/${firstPage}.html`;
     },
     editionName() {
