@@ -53,9 +53,19 @@ export default {
   }),
   computed: {
     pages() {
+      // scanned : { [keyword]: { [volume]: { img: int[][], p: int[][] } }
       return window[`scanned_${this.edition}`][this.article.title] || {};
     },
     pageNames() {
+      // Temporary exception for 2nd edition, until we have new scanned file for that too.
+      // scanned_2 : { [keyword]: string[] }
+      if (this.edition == 2) {
+        return (
+          this.pages.length &&
+          this.pages.map((fn) => String(fn.match(/nf..\/\d+/)))
+        );
+      }
+
       return Object.keys(this.pages).flatMap((volumeCode) =>
         this.pages[volumeCode].img.map(
           (scanInt) => `${volumeCode}/${String(scanInt).padStart(4, "0")}`
