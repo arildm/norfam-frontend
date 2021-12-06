@@ -58,20 +58,7 @@ export default {
     /** Get page numbers, scan filenames and citation info, and Runeberg links. */
     pages() {
       const data = window[`scanned_${this.edition}`][this.article.title];
-
-      // Temporary exception for 2nd edition, until we have new scanned file for that too.
-      // scanned_2 : { [keyword]: string[] }
-      if (this.edition == 2) {
-        const filenames = (data || []).map((fn) =>
-          String(fn.match(/nf..\/\d+/))
-        );
-        return {
-          filenames,
-          ranges: [{ link: `http://runeberg.org/${filenames[0]}.html` }],
-        };
-      }
-
-      // scanned_1 : { [keyword]: { [volume]: { img: int[][], p: int[][] } }
+      // data : { [vol]: { img: int[][], p: int[][] }
       const filenames = [];
       const ranges = [];
       for (const vol in data) {
@@ -114,6 +101,44 @@ export default {
         nfar: "18. Värja–Öynhausen (1894)",
         nfas: "19. supplement: A–Böttiger (1896)",
         nfat: "20. supplement: C–Öxnevalla (1899)",
+        nfba: "1. A–Armati (1904)",
+        nfbb: "2. Armatoler–Bergsund (1904)",
+        nfbc: "3. Bergsvalan–Branstad (1905)",
+        nfbd: "4. Brant–Cesti (1905)",
+        nfbe: "5. Cestius–Degas (1906)",
+        nfbf: "6. Degeberg–Egyptolog (1907)",
+        nfbg: "7. Egyptologi–Feinschmecker (1907)",
+        nfbh: "8. Feiss–Fruktmögel (1908)",
+        nfbi: "9. Fruktodling–Gossensass (1908)",
+        nfbj: "10. Gossler–Harris (1909)",
+        nfbk: "11. Harrisburg–Hypereides (1909)",
+        nfbl: "12. Hyperemi–Johan (1910)",
+        nfbm: "13. Johan–Kikare (1910)",
+        nfbn: "14. Kikarsikte–Kroman (1911)",
+        nfbo: "15. Kromat–Ledvätska (1911)",
+        nfbp: "16. Lee–Luvua (1912)",
+        nfbq: "17. Lux–Mekanik (1912)",
+        nfbr: "18. Mekaniker–Mykale (1913)",
+        nfbs: "19. Mykenai–Norrpada (1913)",
+        nfbt: "20. Norrsken–Paprocki (1914)",
+        nfca: "21. Papua–Posselt (1915)",
+        nfcb: "22. Possession–Retzia (1915)",
+        nfcc: "23. Retzius–Ryssland (1916)",
+        nfcd: "24. Ryssläder–Sekretär (1916)",
+        nfce: "25. Sekt–Slöjskifling (1917)",
+        nfcf: "26. Slöke–Stockholm (1917)",
+        nfcg: "27. Stockholm-Nynäs järnväg–Syrsor (1918)",
+        nfch: "28. Syrten–Tidsbestämning (1919)",
+        nfci: "29. Tidsekvation–Trompe (1919)",
+        nfcj: "30. Tromsdalstind–Urakami (1920)",
+        nfck: "31. Ural–Vertex (1921)",
+        nfcl: "32. Werth–Väderkvarn (1921)",
+        nfcm: "33. Väderlek–Äänekoski (1922)",
+        nfcn: "34. Ö–Öyslebö; supplement: Aa–Cambon (1922)",
+        nfco: "35. supplement: Cambrai–Glis (1923)",
+        nfcp: "36. supplement: Globe–Kövess (1924)",
+        nfcq: "37. supplement: L–Riksdag (1925)",
+        nfcr: "38. supplement: Riksdagens bibliotek–Öyen; tillägg (1926)",
       };
     },
   },
