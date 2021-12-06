@@ -12,6 +12,7 @@
       </PaneContent>
       <div class="article-pane-side">
         <PaneContent>
+          <template v-slot:title>&nbsp;</template>
           <Row v-for="range in pages.ranges" :key="range.link">
             <p class="citeas">{{ range.citeAs }}</p>
             <a :href="range.link" target="_blank">
