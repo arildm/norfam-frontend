@@ -51,7 +51,7 @@
         <div class="right-pane">
           <div class="right-pane-content">
             <div v-if="neighbors[edition].length">
-              <h3>Liknande ord</h3>
+              <h3>Relaterade ord</h3>
               <SimilarTerms
                 v-for="{ term, neighbors } in neighbors[edition]"
                 :key="term"
@@ -84,7 +84,7 @@
         <div class="right-pane">
           <div class="right-pane-content">
             <div v-if="neighbors[2].length">
-              <h3>Liknande ord</h3>
+              <h3>Relaterade ord</h3>
               <SimilarTerms
                 v-for="{ term, neighbors } in neighbors[2]"
                 :key="term"
