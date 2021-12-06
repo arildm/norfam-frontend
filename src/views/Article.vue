@@ -15,7 +15,7 @@
           <Row v-for="range in pages.ranges" :key="range.link">
             <p class="citeas">{{ range.citeAs }}</p>
             <a :href="range.link" target="_blank">
-              <ButtonLink icon="link" label="Läs på runeberg.org" />
+              <GoLink>Läs på runeberg.org</GoLink>
             </a>
           </Row>
           <ButtonLink
@@ -174,7 +174,7 @@ export default {
 }
 
 .citeas {
-  margin-bottom: 0;
+  margin-bottom: 0.25rem;
 }
 
 .facsimiles {
