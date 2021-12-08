@@ -38,13 +38,15 @@
               {{ hitCountMessage(results[edition]) }}
             </div>
             <Teaser
-              v-for="hit in results[edition].slice(0, 100)"
+              v-for="hit in LIMIT
+                ? results[edition].slice(0, LIMIT)
+                : results[edition]"
               :key="hit.id"
               v-bind="hit"
               :edition="edition"
             />
-            <p v-if="results[edition].length > 100">
-              <em>Endast de 100 första sökträffarna visas.</em>
+            <p v-if="LIMIT && results[edition].length > LIMIT">
+              <em>Endast de {{ LIMIT }} första sökträffarna visas.</em>
             </p>
           </PaneContent>
         </div>
@@ -70,13 +72,13 @@
               {{ hitCountMessage(results[2]) }}
             </div>
             <Teaser
-              v-for="hit in results[2].slice(0, 100)"
+              v-for="hit in LIMIT ? results[2].slice(0, LIMIT) : results[2]"
               :key="hit.id"
               v-bind="hit"
               :edition="2"
             />
-            <p v-if="results[2].length > 100">
-              <em>Endast de 100 första sökträffarna visas.</em>
+            <p v-if="LIMIT && results[2].length > LIMIT">
+              <em>Endast de {{ LIMIT }} första sökträffarna visas.</em>
             </p>
           </PaneContent>
         </div>
@@ -119,6 +121,7 @@ export default {
   }),
   computed: {
     MODE: () => MODE,
+    LIMIT: () => null, // Any falsy value means no limit.
     ...mapState(["query", "fulltext", "results", "neighbors"]),
     mode() {
       return this.fulltext ? MODE.FULL : MODE.HEADING;
@@ -139,8 +142,6 @@ export default {
     hitCountMessage(hits) {
       return hits.length == 1
         ? "1 träff"
-        : hits.length == 100
-        ? "Minst 100 träffar"
         : `${Number(hits.length).toLocaleString("sv")} träffar`;
     },
   },
