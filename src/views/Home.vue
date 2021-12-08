@@ -121,7 +121,7 @@ export default {
   }),
   computed: {
     MODE: () => MODE,
-    LIMIT: () => null, // Any falsy value means no limit.
+    LIMIT: () => 100, // Any falsy value means no limit.
     ...mapState(["query", "fulltext", "results", "neighbors"]),
     mode() {
       return this.fulltext ? MODE.FULL : MODE.HEADING;
