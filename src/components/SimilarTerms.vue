@@ -43,11 +43,16 @@ table {
   width: 100%;
   margin-bottom: 1em;
 }
+
+.term {
+  /* Expand to make the number column as small as possible. */
+  width: 100%;
+}
+
 .term span {
   cursor: pointer;
 }
 .similarity {
-  text-align: right;
   font-variant-numeric: tabular-nums;
 }
 </style>

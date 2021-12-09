@@ -216,6 +216,10 @@ export default {
   padding: 20px;
 }
 
+.right-pane h3 {
+  text-align: center;
+}
+
 h3:first-child {
   margin-top: 0;
 }
