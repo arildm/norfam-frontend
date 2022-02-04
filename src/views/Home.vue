@@ -38,16 +38,11 @@
               {{ hitCountMessage(counts[edition]) }}
             </div>
             <Teaser
-              v-for="hit in LIMIT
-                ? results[edition].slice(0, LIMIT)
-                : results[edition]"
+              v-for="hit in results[edition]"
               :key="hit.id"
               v-bind="hit"
               :edition="edition"
             />
-            <p v-if="LIMIT && results[edition].length > LIMIT">
-              <em>Endast de {{ LIMIT }} första sökträffarna visas.</em>
-            </p>
           </PaneContent>
         </div>
         <div class="right-pane">
@@ -72,14 +67,11 @@
               {{ hitCountMessage(counts[2]) }}
             </div>
             <Teaser
-              v-for="hit in LIMIT ? results[2].slice(0, LIMIT) : results[2]"
+              v-for="hit in results[2]"
               :key="hit.id"
               v-bind="hit"
               :edition="2"
             />
-            <p v-if="LIMIT && results[2].length > LIMIT">
-              <em>Endast de {{ LIMIT }} första sökträffarna visas.</em>
-            </p>
           </PaneContent>
         </div>
 
@@ -121,7 +113,6 @@ export default {
   }),
   computed: {
     MODE: () => MODE,
-    LIMIT: () => 100, // Any falsy value means no limit.
     ...mapState(["query", "fulltext", "results", "counts", "neighbors"]),
     mode() {
       return this.fulltext ? MODE.FULL : MODE.HEADING;
