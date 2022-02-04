@@ -1,11 +1,22 @@
 const NORFAM_BACKEND = "https://nordiskfamiljebok.dh.gu.se/api";
+const PAGE_SIZE = 20;
 
-export async function search(query, fulltext) {
-  const mode = fulltext ? "t" : "k";
-  const url = `${NORFAM_BACKEND}/api/query/?q=${query}&m=${mode}`;
+export async function search(query, fulltext, page = 1) {
+  const params = new URLSearchParams({
+    q: query,
+    m: fulltext ? "t" : "k",
+    offset: (page - 1) * PAGE_SIZE,
+    limit: PAGE_SIZE,
+  });
+  const url = `${NORFAM_BACKEND}/api/query/?${params}`;
 
-  const formatResponse = async (response) =>
-    (await response.json()).map(formatHit);
+  async function formatResponse(response) {
+    const data = await response.json();
+    return {
+      count: data.count,
+      items: data.results.map(formatHit),
+    };
+  }
 
   return [
     fetch(`${url}&v=1`).then(formatResponse),
@@ -23,7 +34,7 @@ export async function getSimilarTerms(query) {
   const url = `${NORFAM_BACKEND}/api/termsim/?q=${query}`;
 
   const formatResponse = async (response) =>
-    (await response.json())
+    (await response.json()).results
       .map(({ term_term, neighbors }) => ({
         term: term_term,
         neighbors: neighbors.map(({ term, similarity }) => ({

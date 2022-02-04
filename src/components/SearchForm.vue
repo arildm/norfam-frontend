@@ -31,6 +31,7 @@ export default {
   methods: {
     ...mapMutations([
       "setQuery",
+      "resetPages",
       "enqueue",
       "dequeue",
       "setResults",
@@ -42,12 +43,18 @@ export default {
     },
     async searchArticles(query) {
       this.enqueue("search");
+      this.resetPages();
       const [res1, res2] = await searchDebounced(this.query, this.fulltext);
       // The request can take some time. Discard this result if the query has already changed.
+      // TODO What actually takes time is the promises res1 and res2 to resolve.
       if (query !== this.query) return;
 
-      res1.then((results) => this.setResults({ edition: 1, results }));
-      res2.then((results) => this.setResults({ edition: 2, results }));
+      res1.then(({ items, count }) =>
+        this.setResults({ edition: 1, items, count })
+      );
+      res2.then(({ items, count }) =>
+        this.setResults({ edition: 2, items, count })
+      );
       Promise.all([res1, res2]).finally(() => this.dequeue("search"));
     },
     async findSimilarTerms(query) {

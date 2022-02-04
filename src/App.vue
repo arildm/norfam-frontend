@@ -59,6 +59,12 @@
 import "cdh-gui-vue/dist/cdh-gui-vue.css";
 import { mapGetters, mapMutations, mapState } from "vuex";
 import "typeface-antic-didone";
+import * as norfam from "@/services/norfam.service";
+
+// Expose internal API to browser console in development mode.
+if (process.env.NODE_ENV === "development") {
+  window.norfam = norfam;
+}
 
 export default {
   name: "App",

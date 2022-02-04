@@ -35,7 +35,7 @@
 
           <PaneContent title="Utgåva 1">
             <div>
-              {{ hitCountMessage(results[edition]) }}
+              {{ hitCountMessage(counts[edition]) }}
             </div>
             <Teaser
               v-for="hit in LIMIT
@@ -69,7 +69,7 @@
         <div class="left-pane">
           <PaneContent title="Utgåva 2">
             <div>
-              {{ hitCountMessage(results[2]) }}
+              {{ hitCountMessage(counts[2]) }}
             </div>
             <Teaser
               v-for="hit in LIMIT ? results[2].slice(0, LIMIT) : results[2]"
@@ -122,7 +122,7 @@ export default {
   computed: {
     MODE: () => MODE,
     LIMIT: () => 100, // Any falsy value means no limit.
-    ...mapState(["query", "fulltext", "results", "neighbors"]),
+    ...mapState(["query", "fulltext", "results", "counts", "neighbors"]),
     mode() {
       return this.fulltext ? MODE.FULL : MODE.HEADING;
     },
@@ -139,10 +139,10 @@ export default {
     modeChanged(mode) {
       this.setFulltext(mode === MODE.FULL);
     },
-    hitCountMessage(hits) {
-      return hits.length == 1
+    hitCountMessage(count) {
+      return count == 1
         ? "1 träff"
-        : `${Number(hits.length).toLocaleString("sv")} träffar`;
+        : `${Number(count).toLocaleString("sv")} träffar`;
     },
   },
 };
