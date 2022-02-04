@@ -25,7 +25,7 @@ export default {
     q: "",
   }),
   computed: {
-    ...mapState(["query", "fulltext"]),
+    ...mapState(["query", "fulltext", "page"]),
     ...mapGetters(["waiting"]),
   },
   methods: {
@@ -35,6 +35,7 @@ export default {
       "enqueue",
       "dequeue",
       "setResults",
+      "appendResults",
       "setNeighbors",
     ]),
     async queryChanged() {
@@ -57,6 +58,18 @@ export default {
       );
       Promise.all([res1, res2]).finally(() => this.dequeue("search"));
     },
+    async nextPage(edition) {
+      this.enqueue("next" + edition);
+      // TODO Change search() to only do one edition.
+      const [res1, res2] = await searchDebounced(
+        this.query,
+        this.fulltext,
+        this.page[edition]
+      );
+      const { items } = await (edition === 2 ? res2 : res1);
+      this.appendResults({ edition, items });
+      this.dequeue("next" + edition);
+    },
     async findSimilarTerms(query) {
       this.enqueue("similar");
       const [res1, res2] = await getSimilarTermsDebounced(query);
@@ -72,6 +85,12 @@ export default {
       this.q = query;
       this.searchArticles(this.q);
       this.findSimilarTerms(this.q);
+    },
+    "page.1"() {
+      this.nextPage(1);
+    },
+    "page.2"() {
+      this.nextPage(2);
     },
     fulltext() {
       this.searchArticles(this.q);

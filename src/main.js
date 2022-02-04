@@ -3,10 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import cdhGui from "cdh-gui-vue";
+import VueObserveVisibility from "vue-observe-visibility";
 
 Vue.config.productionTip = false;
 
 Vue.use(cdhGui);
+Vue.use(VueObserveVisibility);
 
 new Vue({
   router,

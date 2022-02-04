@@ -43,8 +43,10 @@
               v-bind="hit"
               :edition="edition"
             />
+            <div v-observe-visibility="onScrollToBottom(edition)"></div>
           </PaneContent>
         </div>
+
         <div class="right-pane">
           <div class="right-pane-content">
             <div v-if="neighbors[edition].length">
@@ -72,6 +74,7 @@
               v-bind="hit"
               :edition="2"
             />
+            <div v-observe-visibility="onScrollToBottom(2)"></div>
           </PaneContent>
         </div>
 
@@ -123,7 +126,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["showModal", "setFulltext"]),
+    ...mapMutations(["showModal", "setFulltext", "incrementPage"]),
     showAbout() {
       this.showModal("about");
     },
@@ -134,6 +137,14 @@ export default {
       return count == 1
         ? "1 träff"
         : `${Number(count).toLocaleString("sv")} träffar`;
+    },
+    onScrollToBottom(edition) {
+      return (isVisible) => isVisible && this.nextPage(edition);
+    },
+    nextPage(edition) {
+      if (this.results[edition].length < this.counts[edition]) {
+        this.incrementPage(edition);
+      }
     },
   },
 };

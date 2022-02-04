@@ -21,6 +21,9 @@ export default new Vuex.Store({
     resetPages(state) {
       state.page = { 1: 1, 2: 1 };
     },
+    incrementPage(state, edition) {
+      state.page[edition]++;
+    },
     showModal(state, name) {
       state.modalVisible = name;
     },
@@ -33,6 +36,9 @@ export default new Vuex.Store({
     setResults(state, { edition, items, count }) {
       state.results[edition] = items;
       state.counts[edition] = count;
+    },
+    appendResults(state, { edition, items }) {
+      state.results[edition].push(...items);
     },
     setNeighbors(state, { edition, neighbors }) {
       state.neighbors[edition] = neighbors;
