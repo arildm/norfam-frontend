@@ -1,27 +1,21 @@
 const NORFAM_BACKEND = "https://nordiskfamiljebok.dh.gu.se/api";
 const PAGE_SIZE = 20;
 
-export async function search(query, fulltext, page = 1) {
+export async function search(edition, query, fulltext, page = 1) {
   const params = new URLSearchParams({
+    v: edition,
     q: query,
     m: fulltext ? "t" : "k",
     offset: (page - 1) * PAGE_SIZE,
     limit: PAGE_SIZE,
   });
   const url = `${NORFAM_BACKEND}/api/query/?${params}`;
-
-  async function formatResponse(response) {
-    const data = await response.json();
-    return {
-      count: data.count,
-      items: data.results.map(formatHit),
-    };
-  }
-
-  return [
-    fetch(`${url}&v=1`).then(formatResponse),
-    fetch(`${url}&v=2`).then(formatResponse),
-  ];
+  const response = await fetch(url);
+  const data = await response.json();
+  return {
+    count: data.count,
+    items: data.results.map(formatHit),
+  };
 }
 
 export async function getArticle(edition, id) {
