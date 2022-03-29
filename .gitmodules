@@ -1,0 +1,4 @@
+[submodule "lib/GUITemplate"]
+	path = lib/GUITemplate
+	url = https://github.com/CDH-DevTeam/GUITemplate.git
+	branch = vue-lib

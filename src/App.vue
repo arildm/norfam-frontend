@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import "cdh-gui-vue/dist/cdh-gui-vue.css";
+import "@gui/src/assets/css/base.css";
 import { mapGetters, mapMutations, mapState } from "vuex";
 import "typeface-antic-didone";
 import * as norfam from "@/services/norfam.service";

@@ -4,24 +4,27 @@ This is the frontend of the Nordisk Familjebok website at https://nordiskfamilje
 
 ## Development
 
-This project requires that the CDH GUI template is in a local directory, sibling to this one.
-
 ```sh
-git clone git@github.com:CDH-DevTeam/norfam-frontend
-git clone -b vue-lib git@github.com:CDH-DevTeam/GUITemplate
-cd GUITemplate
-yarn install
-yarn build
-cd ../norfam-frontend
+git clone --recurse-submodules git@github.com:CDH-DevTeam/norfam-frontend
+cd norfam-frontend
 yarn install
 yarn serve
 ```
 
-If the GUITemplate repo is updated locally (pulled or after local changes):
+If you missed the `--recurse-submodules` above, just do `git submodule update --init` before `yarn install`.
+
+### GUI Template
+
+The [CDH GUI template](https://github.com/CDH-DevTeam/GUITemplate) is included as a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules), "pinned" at a specific commit.
+
+To checkout the specified commit:
 
 ```sh
-cd ../GUITemplate
-yarn build
-cd ../norfam-frontend
-yarn add -D cdh-gui-vue
+git submodule update
+```
+
+To update to the latest pushed commit:
+
+```sh
+git submodule update --remote
 ```
