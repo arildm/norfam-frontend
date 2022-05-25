@@ -127,4 +127,8 @@ blockquote {
 .article > :last-child {
   margin-bottom: 0;
 }
+
+.help-label {
+  font-size: smaller;
+}
 </style>

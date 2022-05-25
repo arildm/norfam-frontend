@@ -57,6 +57,12 @@
                 :term="term"
                 :neighbors="neighbors"
               />
+              <p class="help-label">
+                Siffrorna är ett mått på likheten mellan respektive ord och
+                sökordet, utifrån avståndet i en Word2Vec-modell som tränats på
+                hela upplagan. Ett ord som i texten ofta omges av vissa ord
+                räknas som "likt" ett annat ord som omges av samma ord.
+              </p>
             </div>
           </div>
         </div>
@@ -88,6 +94,12 @@
                 :term="term"
                 :neighbors="neighbors"
               />
+              <p class="help-label">
+                Siffrorna är ett mått på likheten mellan respektive ord och
+                sökordet, utifrån avståndet i en Word2Vec-modell som tränats på
+                hela upplagan. Ett ord som i texten ofta omges av vissa ord
+                räknas som "likt" ett annat ord som omges av samma ord.
+              </p>
             </div>
           </div>
         </div>

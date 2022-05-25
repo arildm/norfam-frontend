@@ -19,6 +19,9 @@
               <GoLink>Läs på runeberg.org</GoLink>
             </a>
           </Row>
+          <p v-if="pages.ranges.length" class="help-label">
+            Sidangivelserna är ungefärliga.
+          </p>
           <ButtonLink
             icon="download"
             label="Ladda ner ren text"
