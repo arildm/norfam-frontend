@@ -38,7 +38,10 @@
               target="_blank"
               class="facsimiles-item"
             >
-              <img :src="`http://runeberg.org/img/${fn}.8.png`" />
+              <img
+                :src="`https://data.dh.gu.se/norfam/thumb/${fn}.8.png`"
+                :alt="`Faksimil ${fn}`"
+              />
             </a>
           </div>
         </PaneContent>
