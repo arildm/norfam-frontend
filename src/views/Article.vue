@@ -178,6 +178,7 @@ export default {
 
 .article-pane-side {
   flex: 0;
+  min-width: 14rem;
 }
 
 .citeas {
