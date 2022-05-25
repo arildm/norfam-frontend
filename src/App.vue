@@ -36,19 +36,37 @@
     <Modal :show="modalVisible === 'help'" @hide="hideModal">
       <div class="article-title">Instruktioner</div>
       <div class="article">
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-        et quas molestias excepturi sint occaecati cupiditate non provident,
-        similique sunt in culpa qui officia deserunt mollitia animi, id est
-        laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-        distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-        cumque nihil impedit quo minus id quod maxime placeat facere possimus,
-        omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-        quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
-        ut et voluptates repudiandae sint et molestiae non recusandae. Itaque
-        earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
-        voluptatibus maiores alias consequatur aut perferendis doloribus
-        asperiores repellat.
+        <p>
+          Ange ett eller flera <strong>sökord</strong> i sökfältet. Om flera ord
+          anges sker en sökning på varje ord för sig. I det förvalda sökläget
+          sker sökning endast inom <em>uppslagsordet</em>. Välj
+          <em>Fulltextsökning</em> för att söka på ord som förekommer inom
+          uppslagstexterna.
+        </p>
+        <p>
+          <strong>Sökresultaten</strong> visas sida vid sida om
+          webbläsarfönstret är tillräckligt stort. I annat fall visas en upplaga
+          i taget, med en knapp för att växla mellan dem. Notera att ett flertal
+          uppslagsord har flera ingångar, dels för att särskilja olika
+          betydelser men också för att korrigeringar i supplementband räknas upp
+          separat.
+        </p>
+        <p>
+          Utöver sökresultaten visas för varje sökord en lista över
+          <strong>relaterade ord</strong>. Det är en sammanställning som är
+          frikopplad från konceptet uppslagsord, och istället utgår från hela
+          respektive upplaga som en textkorpus. Siffrorna anger likheten i en
+          Word2Vec-modell, vilket innebär att ord betraktas som lika om de
+          förekommer i liknande lexikala sammanhang.
+        </p>
+        <p>
+          Genom att klicka på ett sökresultat kommer du till den
+          uppslagsingången i sin helhet. Texten ackompanjeras av
+          <strong>sidhänvisningar</strong>, <strong>faksimiler</strong> från det
+          tryckta verket och ren text för nedladdning. Sidhänvisningarna och
+          faksimilsammanställningarna skiljer tyvärr inte mellan de olika
+          ingångarna för ett givet uppslagsord.
+        </p>
       </div>
     </Modal>
     <Footer />
