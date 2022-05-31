@@ -111,7 +111,6 @@ export default {
 }
 
 #search {
-  flex: 1;
   font-size: 50px;
   width: 48.5%;
   background-color: rgba(255 255 255 / 25%);
