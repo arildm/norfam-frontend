@@ -4,10 +4,10 @@
       type="text"
       id="search"
       v-model="q"
-      placeholder="Sök..."
+      placeholder="Sök efter..."
       @input="queryChanged"
     />
-    <div v-show="waiting">Laddar...</div>
+    <div v-show="waiting" class="loading-indicator">Laddar...</div>
   </Row>
 </template>
 
@@ -113,11 +113,22 @@ export default {
 #search {
   flex: 1;
   font-size: 50px;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  width: 48.5%;
+  background-color: rgba(255 255 255 / 25%);
+  border-radius: 15px;
   height: 80px;
-  padding: 0px 10px 10px 0px;
+  padding: 0px 15px 10px;
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 100;
+}
+
+.loading-indicator {
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 1600px) {
+  #search {
+    width: 100%;
+  }
 }
 </style>
