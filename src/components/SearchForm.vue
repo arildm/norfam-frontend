@@ -54,6 +54,11 @@ export default {
       this.searchArticlesInEdition(2, query, this.fulltext);
     },
     async searchArticlesInEdition(edition, query) {
+      // Reset results if query empty.
+      if (!query) {
+        this.setResults({ edition, items: [], count: null });
+        return;
+      }
       this.enqueue("search" + edition);
       const { items, count } = await searchInEdition[edition](
         query,
