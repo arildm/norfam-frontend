@@ -25,7 +25,7 @@
 
     <Controls>
       <SwitchButton
-        :options="[MODE.HEADING, MODE.FULL]"
+        :options="[MODE.FULL, MODE.HEADING]"
         :selected="mode"
         @change="modeChanged"
       />
@@ -123,7 +123,7 @@ import Teaser from "@/components/Teaser.vue";
 import SimilarTerms from "@/components/SimilarTerms.vue";
 import { mapMutations, mapState } from "vuex";
 
-const MODE = { HEADING: "Uppslagsord", FULL: "Fulltextsökning" };
+const MODE = { FULL: "Fulltextsökning", HEADING: "Uppslagsord" };
 
 export default {
   name: "home",

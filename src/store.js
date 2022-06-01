@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     query: "",
     modalVisible: null,
-    fulltext: false,
+    fulltext: true,
     results: { 1: [], 2: [] },
     counts: { 1: null, 2: null },
     page: { 1: 1, 2: 1 },
