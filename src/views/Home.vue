@@ -22,7 +22,6 @@
     </Controls>
 
     <SearchForm />
-
     <Controls>
       <SwitchButton
         :options="[MODE.FULL, MODE.HEADING]"
@@ -31,8 +30,9 @@
       />
       <!-- <ButtonLink id="close-tab" label="Slå ihop flikar" /> -->
     </Controls>
+
     <div class="publications">
-      <Pane class="publication">
+      <Pane class="publication publication-vary">
         <div class="left-pane">
           <PaneContent class="edition-tabs">
             <Tabs
@@ -43,6 +43,10 @@
           </PaneContent>
 
           <PaneContent :title="EDITIONS[1]">
+            <div v-if="edition == 2" class="help-label wip-warning">
+              Digitaliseringen av andra utgåvan är inte lika noga korrekturläst,
+              och innehåller fortfarande ganska många fel.
+            </div>
             <div>
               {{ hitCountMessage(counts[edition]) }}
             </div>
@@ -80,6 +84,10 @@
       <Pane class="publication publication2">
         <div class="left-pane">
           <PaneContent :title="EDITIONS[2]">
+            <div class="help-label wip-warning">
+              Digitaliseringen av andra utgåvan är inte lika noga korrekturläst,
+              och innehåller fortfarande ganska många fel.
+            </div>
             <div>
               {{ hitCountMessage(counts[2]) }}
             </div>
@@ -195,6 +203,14 @@ export default {
   margin-left: -15px;
 }
 
+.publication-vary .wip-warning {
+  display: none;
+}
+
+.wip-warning {
+  margin-bottom: 1rem;
+}
+
 #close-tab {
   min-width: 120px;
   font-size: 22px;
@@ -212,6 +228,10 @@ export default {
 
   .publication .edition-tabs {
     display: flex;
+  }
+
+  .publication-vary .wip-warning {
+    display: block;
   }
 
   #close-tab {
