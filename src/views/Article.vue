@@ -52,7 +52,7 @@
 
 <script>
 import { getArticle } from "@/services/norfam.service";
-import { download } from "@/assets/util";
+import { EDITIONS, download } from "@/assets/util";
 
 export default {
   name: "Article",
@@ -84,7 +84,7 @@ export default {
       return { filenames, ranges };
     },
     editionName() {
-      return [null, "Utgåva 1", "Utgåva 2"][this.edition];
+      return EDITIONS[this.edition];
     },
     volumes() {
       return {

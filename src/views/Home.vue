@@ -36,13 +36,13 @@
         <div class="left-pane">
           <PaneContent class="edition-tabs">
             <Tabs
-              :options="['Utgåva 1', 'Utgåva 2' /*, 'Analys'*/]"
+              :options="EDITIONS.slice(1)"
               :selected="tab"
               @change="tab = $event"
             />
           </PaneContent>
 
-          <PaneContent title="Utgåva 1">
+          <PaneContent :title="EDITIONS[1]">
             <div>
               {{ hitCountMessage(counts[edition]) }}
             </div>
@@ -79,7 +79,7 @@
 
       <Pane class="publication publication2">
         <div class="left-pane">
-          <PaneContent title="Utgåva 2">
+          <PaneContent :title="EDITIONS[2]">
             <div>
               {{ hitCountMessage(counts[2]) }}
             </div>
@@ -122,6 +122,7 @@ import SearchForm from "@/components/SearchForm.vue";
 import Teaser from "@/components/Teaser.vue";
 import SimilarTerms from "@/components/SimilarTerms.vue";
 import { mapMutations, mapState } from "vuex";
+import { EDITIONS } from "@/assets/util";
 
 const MODE = { FULL: "Fulltextsökning", HEADING: "Uppslagsord" };
 
@@ -133,17 +134,18 @@ export default {
     SimilarTerms,
   },
   data: () => ({
-    tab: "Utgåva 1",
+    tab: EDITIONS[1],
   }),
   computed: {
     MODE: () => MODE,
+    EDITIONS: () => EDITIONS,
     ...mapState(["query", "fulltext", "results", "counts", "neighbors"]),
     mode() {
       return this.fulltext ? MODE.FULL : MODE.HEADING;
     },
     /** Returns 1 or 2 */
     edition() {
-      return [undefined, "Utgåva 1", "Utgåva 2"].indexOf(this.tab);
+      return EDITIONS.indexOf(this.tab);
     },
   },
   methods: {

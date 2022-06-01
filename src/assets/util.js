@@ -1,3 +1,9 @@
+export const EDITIONS = [
+  undefined,
+  "Första utgåvan (1876-1899)",
+  "Andra utgåvan (1904-1926)",
+];
+
 export function debounce(func, timeout = 300) {
   let timer;
   return (...args) =>
