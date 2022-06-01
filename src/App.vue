@@ -4,35 +4,6 @@
       <Brand />
       <router-view />
     </Container>
-    <Modal :show="modalVisible === 'about'" @hide="hideModal">
-      <div class="article-title">Om utgåvorna</div>
-      <div class="article">
-        <blockquote>
-          Nordisk familjebok påbörjades med att förläggaren C. E. Gernandt i
-          Halmstad som 1874 anställde en redaktör (språkforskaren Nils Linder)
-          för att ge ut ett uppslagsverk i sex band. Det första häftet skickades
-          ut till subskribenterna i maj 1875 och hela första bandet var klart
-          året därpå. När tio band var färdiga tog pengarna slut och ändå hade
-          man bara nått bokstaven K. Läs slutordet till första utgåvan (1894)
-          och vad uggleupplagan skriver om sig själv.
-        </blockquote>
-
-        <p>
-          Så skriver Lars Aronsson på
-          <a href="http://runeberg.org/nf">Projekt Runeberg</a>. Vidare:
-        </p>
-
-        <blockquote>
-          Andra utgåvan, som med sina 38 band är Sveriges mest omfattande
-          uppslagsverk eller encyklopedi genom tiderna, brukar också kallas
-          "uggleupplagan" eftersom den har en uggla på titelsidan. Ugglan finns
-          ibland även på bokryggarna, men det finns också billigare inbindningar
-          med samma innehåll. Den första utgåvan från 1800-talet har i stället
-          Idun som sin symbol, hon som i nordisk mytologi dagligen bär en korg
-          med vishetens äpplen till gudarna i Valhall.
-        </blockquote>
-      </div>
-    </Modal>
     <Modal :show="modalVisible === 'help'" @hide="hideModal">
       <div class="article-title">Instruktioner</div>
       <div class="article">
@@ -67,6 +38,41 @@
           faksimilsammanställningarna skiljer tyvärr inte mellan de olika
           ingångarna för ett givet uppslagsord.
         </p>
+      </div>
+    </Modal>
+    <Modal :show="modalVisible === 'about'" @hide="hideModal">
+      <div class="article-title">Om utgåvorna</div>
+      <div class="article">
+        <blockquote>
+          Nordisk familjebok påbörjades med att förläggaren C. E. Gernandt i
+          Halmstad som 1874 anställde en redaktör (språkforskaren Nils Linder)
+          för att ge ut ett uppslagsverk i sex band. Det första häftet skickades
+          ut till subskribenterna i maj 1875 och hela första bandet var klart
+          året därpå. När tio band var färdiga tog pengarna slut och ändå hade
+          man bara nått bokstaven K. Läs slutordet till första utgåvan (1894)
+          och vad uggleupplagan skriver om sig själv.
+        </blockquote>
+
+        <p>
+          Så skriver Lars Aronsson på
+          <a href="http://runeberg.org/nf">Projekt Runeberg</a>. Vidare:
+        </p>
+
+        <blockquote>
+          Andra utgåvan, som med sina 38 band är Sveriges mest omfattande
+          uppslagsverk eller encyklopedi genom tiderna, brukar också kallas
+          "uggleupplagan" eftersom den har en uggla på titelsidan. Ugglan finns
+          ibland även på bokryggarna, men det finns också billigare inbindningar
+          med samma innehåll. Den första utgåvan från 1800-talet har i stället
+          Idun som sin symbol, hon som i nordisk mytologi dagligen bär en korg
+          med vishetens äpplen till gudarna i Valhall.
+        </blockquote>
+      </div>
+    </Modal>
+    <Modal :show="modalVisible === 'tool'" @hide="hideModal">
+      <div class="article-title">Om verktyget</div>
+      <div class="article">
+        Lorem ipsum
       </div>
     </Modal>
     <Footer />

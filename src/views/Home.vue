@@ -3,11 +3,20 @@
     <MainTitle>Nordisk<br />Familjebok</MainTitle>
     <Controls>
       <ControlsSection>
-        <ButtonLink icon="link" label="Om utgåvorna" @click="showAbout" />
         <ButtonLink
           icon="link"
           label="Instruktioner"
           @click="showModal('help')"
+        />
+        <ButtonLink
+          icon="link"
+          label="Om utgåvorna"
+          @click="showModal('about')"
+        />
+        <ButtonLink
+          icon="link"
+          label="Om verktyget"
+          @click="showModal('tool')"
         />
       </ControlsSection>
     </Controls>
