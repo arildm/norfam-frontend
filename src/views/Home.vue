@@ -6,12 +6,12 @@
         <ButtonLink
           icon="link"
           label="Instruktioner"
-          @click="showModal('help')"
+          @click="showModal('instructions')"
         />
         <ButtonLink
           icon="link"
           label="Om utgåvorna"
-          @click="showModal('about')"
+          @click="showModal('editions')"
         />
         <ButtonLink
           icon="link"
@@ -44,7 +44,7 @@
 
           <PaneContent :title="EDITIONS[1]">
             <div v-if="edition == 2" class="help-label wip-warning">
-              Digitaliseringen av andra utgåvan är ännu inte korrekturläst, och
+              Digitiseringen av andra utgåvan är ännu inte korrekturläst, och
               innehåller därför många fel.
             </div>
             <div>
@@ -73,7 +73,7 @@
               <p class="help-label">
                 Siffrorna är ett mått på likheten mellan respektive ord och
                 sökordet, utifrån avståndet i en Word2Vec-modell som tränats på
-                hela upplagan. Ett ord som i texten ofta omges av vissa ord
+                hela utgåvan. Ett ord som i texten ofta omges av vissa ord
                 räknas som "likt" ett annat ord som omges av samma ord.
               </p>
             </div>
@@ -85,7 +85,7 @@
         <div class="left-pane">
           <PaneContent :title="EDITIONS[2]">
             <div class="help-label wip-warning">
-              Digitaliseringen av andra utgåvan är ännu inte korrekturläst, och
+              Digitiseringen av andra utgåvan är ännu inte korrekturläst, och
               innehåller därför många fel.
             </div>
             <div>
@@ -114,7 +114,7 @@
               <p class="help-label">
                 Siffrorna är ett mått på likheten mellan respektive ord och
                 sökordet, utifrån avståndet i en Word2Vec-modell som tränats på
-                hela upplagan. Ett ord som i texten ofta omges av vissa ord
+                hela utgåvan. Ett ord som i texten ofta omges av vissa ord
                 räknas som "likt" ett annat ord som omges av samma ord.
               </p>
             </div>
