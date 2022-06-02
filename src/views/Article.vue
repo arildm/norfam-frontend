@@ -20,7 +20,8 @@
             </a>
           </Row>
           <p v-if="pages.ranges.length" class="help-label">
-            Sidangivelserna är ungefärliga.
+            Sidangivelserna är ungefärliga. Kontrollera gärna mot
+            faksimilbilderna.
           </p>
           <ButtonLink
             icon="download"
