@@ -67,6 +67,15 @@
         Wåhlstrand Skärström, Språkbanken Text, Nina Tahmasebi, Johan Åhlfeldt,
         och Maria Öhrman.
       </p>
+      <p>
+        Källkod för verktyget finns på GitHub:
+        <a href="https://github.com/CDH-DevTeam/norfam-backend"
+          >norfam-backend</a
+        >,
+        <a href="https://github.com/CDH-DevTeam/norfam-frontend"
+          >norfam-frontend</a
+        >.
+      </p>
     </div>
   </div></template
 >
