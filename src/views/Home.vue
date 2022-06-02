@@ -44,8 +44,8 @@
 
           <PaneContent :title="EDITIONS[1]">
             <div v-if="edition == 2" class="help-label wip-warning">
-              Digitaliseringen av andra utgåvan är inte lika noga korrekturläst,
-              och innehåller fortfarande ganska många fel.
+              Digitaliseringen av andra utgåvan är ännu inte korrekturläst, och
+              innehåller därför många fel.
             </div>
             <div>
               {{ hitCountMessage(counts[edition]) }}
@@ -85,8 +85,8 @@
         <div class="left-pane">
           <PaneContent :title="EDITIONS[2]">
             <div class="help-label wip-warning">
-              Digitaliseringen av andra utgåvan är inte lika noga korrekturläst,
-              och innehåller fortfarande ganska många fel.
+              Digitaliseringen av andra utgåvan är ännu inte korrekturläst, och
+              innehåller därför många fel.
             </div>
             <div>
               {{ hitCountMessage(counts[2]) }}
