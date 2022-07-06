@@ -15,12 +15,12 @@ export async function search(edition, query, fulltext, page = 1) {
   const data = await response.json();
   return {
     count: data.count,
-    items: data.results.map(formatHit),
+    items: data.map(formatHit),
   };
 }
 
-export async function getArticle(edition, id) {
-  return fetch(`${NORFAM_BACKEND}/api/documents/${id}/?v=${edition}`)
+export async function getArticle(id) {
+  return fetch(`${NORFAM_BACKEND}/api/documents/${id}`)
     .then((response) => response.json())
     .then(formatHit);
 }
@@ -29,7 +29,7 @@ export async function getSimilarTerms(query) {
   const url = `${NORFAM_BACKEND}/api/termsim/?q=${query}`;
 
   const formatResponse = async (response) =>
-    (await response.json()).results
+    (await response.json())
       .map(({ term_term, neighbors }) => ({
         term: term_term,
         neighbors: neighbors.map(({ term, similarity }) => ({
@@ -42,8 +42,8 @@ export async function getSimilarTerms(query) {
       .sort((a, b) => query.indexOf(a.term) - query.indexOf(b.term));
 
   return [
-    fetch(`${url}&v=1`).then(formatResponse),
-    fetch(`${url}&v=2`).then(formatResponse),
+    fetch(`${url}`).then(formatResponse),
+    fetch(`${url}`).then(formatResponse),
   ];
 }
 
