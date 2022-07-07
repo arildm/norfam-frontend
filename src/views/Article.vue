@@ -29,20 +29,17 @@
             @click="downloadText"
           />
         </PaneContent>
-        <PaneContent v-if="pages.filenames.length">
+        <PaneContent v-if="pages.pageIds.length">
           <h3>Faksimiler</h3>
           <div class="facsimiles">
             <a
-              v-for="fn in pages.filenames"
-              :key="fn"
-              :href="`http://runeberg.org/img/${fn}.3.png`"
+              v-for="pageId in pages.pageIds"
+              :key="pageId"
+              :href="pageFullUrl(pageId)"
               target="_blank"
               class="facsimiles-item"
             >
-              <img
-                :src="`https://data.dh.gu.se/norfam/thumb/${fn}.8.png`"
-                :alt="`Faksimil ${fn}`"
-              />
+              <img :src="pageThumbUrl(pageId)" :alt="`Faksimil ${pageId}`" />
             </a>
           </div>
         </PaneContent>
@@ -53,7 +50,7 @@
 
 <script>
 import { getArticle } from "@/services/norfam.service";
-import { EDITIONS, download } from "@/assets/util";
+import { EDITIONS, download, iiifUrl } from "@/assets/util";
 
 export default {
   name: "Article",
@@ -67,22 +64,22 @@ export default {
     pages() {
       const data = window[`scanned_${this.edition}`][this.article.title];
       // data : { [vol]: { img: int[][], p: int[][] }
-      const filenames = [];
+      const pageIds = [];
       const ranges = [];
       for (const vol in data) {
-        const volFilenames = data[vol].img.map(
+        const volPageIds = data[vol].img.map(
           (scanInt) => `${vol}/${String(scanInt).padStart(4, "0")}`
         );
-        filenames.push(...volFilenames);
+        pageIds.push(...volPageIds);
         const pageRanges = data[vol].p
           .map((range) => range.join("–"))
           .join(", ");
         ranges.push({
           citeAs: `Nordisk Familjebok, utgåva ${this.edition}, volym ${this.volumes[vol]} ss. ${pageRanges}`,
-          link: `http://runeberg.org/${volFilenames[0]}.html`,
+          link: `http://runeberg.org/${volPageIds[0]}.html`,
         });
       }
-      return { filenames, ranges };
+      return { pageIds, ranges };
     },
     editionName() {
       return EDITIONS[this.edition];
@@ -151,6 +148,12 @@ export default {
     },
   },
   methods: {
+    pageThumbUrl(pageId) {
+      return iiifUrl(`norfam/fac/pyr/${pageId}.1.tif`, { size: ",700" });
+    },
+    pageFullUrl(pageId) {
+      return `https://data.dh.gu.se/norfam/fac/${pageId}.1.tif`;
+    },
     downloadText() {
       const plainText = this.article.body.replaceAll(/<\/?\w+>/g, "");
       download(`${this.article.title}.txt`, plainText);

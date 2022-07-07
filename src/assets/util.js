@@ -26,3 +26,15 @@ export function download(filename, content, contentType) {
   a.click();
   document.body.removeChild(a);
 }
+
+/** Build an image URL for the CDH IIIF service. */
+export function iiifUrl(file, options) {
+  const region = options.region || "full";
+  const size = options.size || "full";
+  const rotation = options.rotation || 0;
+  const quality = options.quality || "default";
+  const format = options.format || "jpg";
+
+  const query = `${region}/${size}/${rotation}/${quality}.${format}`;
+  return `https://img.dh.gu.se/${file}/${query}`;
+}
