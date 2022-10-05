@@ -14,7 +14,7 @@ export async function search(edition, query, fulltext, page = 1) {
   const response = await fetch(url);
   const data = await response.json();
   return {
-    count: data.count,
+    count: data.length,
     items: data.map(formatHit),
   };
 }
