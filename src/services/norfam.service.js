@@ -11,6 +11,7 @@ export async function search(edition, query, fulltext, page = 1) {
     limit: PAGE_SIZE,
   });
   const url = `${NORFAM_BACKEND}/api/query/?${params}`;
+  console.log(url);
   const response = await fetch(url);
   const data = await response.json();
   return {
@@ -19,12 +20,11 @@ export async function search(edition, query, fulltext, page = 1) {
   };
 }
 
-export async function getArticle(id) {
+export async function getArticle(edition, id) {
   return fetch(`${NORFAM_BACKEND}/api/documents/${id}`)
     .then((response) => response.json())
     .then(formatHit);
 }
-
 export async function getSimilarTerms(query) {
   const url = `${NORFAM_BACKEND}/api/termsim/?q=${query}`;
 
@@ -42,8 +42,8 @@ export async function getSimilarTerms(query) {
       .sort((a, b) => query.indexOf(a.term) - query.indexOf(b.term));
 
   return [
-    fetch(`${url}`).then(formatResponse),
-    fetch(`${url}`).then(formatResponse),
+    fetch(`${url}&v=1`).then(formatResponse),
+    fetch(`${url}&v=2`).then(formatResponse),
   ];
 }
 
