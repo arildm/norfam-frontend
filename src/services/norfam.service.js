@@ -11,7 +11,6 @@ export async function search(edition, query, fulltext, page = 1) {
     limit: PAGE_SIZE,
   });
   const url = `${NORFAM_BACKEND}/api/query/?${params}`;
-  console.log(url);
   const response = await fetch(url);
   const data = await response.json();
   return {
