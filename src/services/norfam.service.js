@@ -1,5 +1,5 @@
 const NORFAM_BACKEND =
-  process.env.VUE_APP_APIURL || "https://nordiskfamiljebok.dh.gu.se/api";
+  process.env.VUE_APP_APIURL || "https://diana.dh.gu.se/norfam/api";
 const PAGE_SIZE = 20;
 
 export async function search(edition, query, fulltext, page = 1) {
