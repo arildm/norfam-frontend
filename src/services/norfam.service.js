@@ -10,7 +10,7 @@ export async function search(edition, query, fulltext, page = 1) {
     offset: (page - 1) * PAGE_SIZE,
     limit: PAGE_SIZE,
   });
-  const url = `${NORFAM_BACKEND}/api/query/?${params}`;
+  const url = `${NORFAM_BACKEND}/query/?${params}`;
   const response = await fetch(url);
   const data = await response.json();
   return {
@@ -20,12 +20,12 @@ export async function search(edition, query, fulltext, page = 1) {
 }
 
 export async function getArticle(edition, id) {
-  return fetch(`${NORFAM_BACKEND}/api/documents/${id}`)
+  return fetch(`${NORFAM_BACKEND}/documents/${id}`)
     .then((response) => response.json())
     .then(formatHit);
 }
 export async function getSimilarTerms(query) {
-  const url = `${NORFAM_BACKEND}/api/termsim/?q=${query}`;
+  const url = `${NORFAM_BACKEND}/termsim/?q=${query}`;
 
   const formatResponse = async (response) =>
     (await response.json())
