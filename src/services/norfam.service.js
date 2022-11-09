@@ -14,22 +14,21 @@ export async function search(edition, query, fulltext, page = 1) {
   const response = await fetch(url);
   const data = await response.json();
   return {
-    count: data.count,
-    items: data.results.map(formatHit),
+    count: data.length,
+    items: data.map(formatHit),
   };
 }
 
 export async function getArticle(edition, id) {
-  return fetch(`${NORFAM_BACKEND}/api/documents/${id}/?v=${edition}`)
+  return fetch(`${NORFAM_BACKEND}/api/documents/${id}`)
     .then((response) => response.json())
     .then(formatHit);
 }
-
 export async function getSimilarTerms(query) {
   const url = `${NORFAM_BACKEND}/api/termsim/?q=${query}`;
 
   const formatResponse = async (response) =>
-    (await response.json()).results
+    (await response.json())
       .map(({ term_term, neighbors }) => ({
         term: term_term,
         neighbors: neighbors.map(({ term, similarity }) => ({
