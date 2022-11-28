@@ -1,5 +1,5 @@
 const NORFAM_BACKEND =
-  process.env.VUE_APP_APIURL || "https://diana.dh.gu.se/norfam/api";
+  process.env.VUE_APP_APIURL || "https://diana.dh.gu.se/norfam";
 const PAGE_SIZE = 20;
 
 export async function search(edition, query, fulltext, page = 1) {
@@ -8,12 +8,12 @@ export async function search(edition, query, fulltext, page = 1) {
     q: query,
     m: fulltext ? "t" : "k",
     offset: (page - 1) * PAGE_SIZE,
-    limit: PAGE_SIZE,
-  });
-  const url = `${NORFAM_BACKEND}/query/?${params}`;
-  const response = await fetch(url);
-  const data = await response.json();
-  return {
+     limit: PAGE_SIZE,
+   });
+   const url = `${NORFAM_BACKEND}/query/?${params}`;
+   const response = await fetch(url);
+   const data = await response.json();
+   return {
     count: data.length,
     items: data.map(formatHit),
   };
@@ -24,9 +24,9 @@ export async function getArticle(edition, id) {
     .then((response) => response.json())
     .then(formatHit);
 }
+
 export async function getSimilarTerms(query) {
   const url = `${NORFAM_BACKEND}/termsim/?q=${query}`;
-
   const formatResponse = async (response) =>
     (await response.json())
       .map(({ term_term, neighbors }) => ({
@@ -39,7 +39,6 @@ export async function getSimilarTerms(query) {
       }))
       // Same order as query
       .sort((a, b) => query.indexOf(a.term) - query.indexOf(b.term));
-
   return [
     fetch(`${url}&v=1`).then(formatResponse),
     fetch(`${url}&v=2`).then(formatResponse),
