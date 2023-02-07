@@ -34,29 +34,29 @@
         förtjänster. VI har inte kapacitet att utom i undantagsfall korrigera
         OCR-felläsningar av textinnehållet men vi är mycket tacksamma för
         synpunkter på fallerande funktionaliteter och önskvärda förbättringar
-        vilka kan skickas till cdh@lir.gu.se.
+        vilka kan skickas till gridh@gu.se.
       </p>
       <p>
         De följande individerna har direkt medverkat i tillkomsten av verktygets
         första preliminära version (1.0): <strong>Mats Fridlund</strong>,
-        biträdande föreståndare för CDH som initiativtagare och
+        biträdande föreståndare för GRIDH som initiativtagare och
         huvudprojektledare för verktygets framtagande och tillgängliggörande;
         <strong>Johan Eklund</strong>, forskare på Data as Impact Lab ansvarig
         för utveckling av verktygets datavetenskapliga arkitektur och
         språkteknologiska funktionalitet; <strong>Cecilia Lindhé</strong>,
-        föreståndare för CDH och ansvarig för verktygets finansiering och
-        strategiska implementering i CDH:s e-infrastruktur;
-        <strong>Arild Matsson</strong>, forskningsingenjör vid CDH och
+        föreståndare för GRIDH och ansvarig för verktygets finansiering och
+        strategiska implementering i GRIDH:s e-infrastruktur;
+        <strong>Arild Matsson</strong>, forskningsingenjör vid GRIDH och
         Språkbanken Text ansvarig för verktygets implementering, integrering och
-        tillgängliggörande som del av CDH:s e-infrastruktur;
+        tillgängliggörande som del av GRIDH:s e-infrastruktur;
         <strong>Gustaf Nelhans</strong>, föreståndare för Data as Impact Lab och
         ansvarig för framtagandet av verktygets första version;
         <strong>Rich Potter</strong>, forskningsingenjör vid Institutionen för
         historiska studier vid Göteborgs universitet ansvarig för komplettering,
         modifiering och korrekturläsning av verktygets digitiserade korpus av
         Nordisk familjeboks två första upplagor;
-        <strong>Jonathan Westin</strong>, forskningskoordinator vid CDH ansvarig
-        för utformning av verktygets grafiska gränssnitt.
+        <strong>Jonathan Westin</strong>, forskningskoordinator vid GRIDH
+        ansvarig för utformning av verktygets grafiska gränssnitt.
       </p>
       <p>
         Förutom ovanstående vill vi tacka följande individer och institutioner

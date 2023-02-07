@@ -27,7 +27,7 @@ export function download(filename, content, contentType) {
   document.body.removeChild(a);
 }
 
-/** Build an image URL for the CDH IIIF service. */
+/** Build an image URL for the GRIDH IIIF service. */
 export function iiifUrl(file, options) {
   const region = options.region || "full";
   const size = options.size || "full";
