@@ -7,7 +7,7 @@ This is the frontend of the Nordisk Familjebok website at https://nordiskfamilje
 ```sh
 git clone --recurse-submodules git@github.com:CDH-DevTeam/norfam-frontend
 cd norfam-frontend
-nvm use 12
+nvm use 16
 yarn install
 yarn serve
 ```
